@@ -275,7 +275,9 @@ p{
 
 header{
 	width: 100%;
-	height: 60px;
+	height: 40px;
+	position: fixed;
+	background-color: rgba(0, 0, 0, 0.05);
 }
 
 .header-inner{
@@ -285,14 +287,17 @@ header{
 
 #logo{
 	background: url("../imgs/heart.png") no-repeat center;
-	width: 60px;
-	height: 60px;
+	width: 30px;
+	height: 30px;
 	float: left;
+	background-size: contain;
+	margin-top: 5px;
+	margin-left: 10px;
 }
 
 nav{
 	float: right;
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 #menu-icon{
