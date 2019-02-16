@@ -1,0 +1,953 @@
+html, body, *{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background-color: #f3f8ff;
+	color: #63686e;
+	font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+h3{
+	font-size: 150%;
+	text-align: center;
+	padding-top: 5%;
+	line-height: 300%;
+	color: #535962;
+}
+
+h4{
+	font-size: 120%;
+	font-weight: 700;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+p{
+	line-height: 200%;
+	text-indent: 10%;
+}
+
+.banner{
+	width: 100%;
+	height: 478px;
+	position: relative;
+}
+
+.banner-inner{
+	position: absolute;
+	width: 392px;
+	height: 478px;
+	left: 50%;
+	top: 50%;
+	margin-top: -239px;
+	margin-left: -196px;
+}
+
+.one-fourth i{
+	font-size: 450%;
+	color: #F0F0F0;
+}
+
+#headBase{
+	opacity: 0;
+}
+
+#lEye.stw{	
+	animation: blink 1.5s steps(10) 2,
+				blink 0.8s 3s steps(10) 3 forwards;
+}
+
+#rEye{
+	background-position: -374px 0;
+}
+
+#rEye.stw{
+	animation: blinkR 1.5s steps(10) 2,
+				blinkR 0.8s 3s steps(10) 3 forwards;
+}
+
+@keyframes blink{
+	to{
+		background-position: -340px 0;
+	}
+}
+
+@keyframes blinkR{
+	to{
+		background-position: -714px 0;
+	}
+}
+
+#lEye.blink{
+	animation: blinkBN 0.25s steps(10) 2 forwards;
+}
+
+@keyframes blinkBN{
+	to{
+		background-position: 0px 0;
+	}
+}
+
+#rEye.blink{
+	animation: blinkRBN 0.25s steps(10) 2 forwards;
+}
+
+@keyframes blinkRBN{
+	to{
+		background-position: -374px 0;
+	}
+}
+
+#lEyebrow{
+	background-position: 0 -25px;
+	
+}
+
+.eblNormal{
+	animation: eblNormal 0.25s steps(10) /* 10.6.85s */ forwards;
+}
+
+#rEyebrow{
+	background-position: -49px -25px;
+	
+}
+
+.ebrNormal{
+	animation: ebrNormal 0.25s steps(10) /* 10.6.85s */ forwards;
+}
+
+@keyframes eblNormal{
+	to{
+		background-position: -980px -25px;
+	}
+}
+
+@keyframes ebrNormal{
+	to{
+		background-position: -1029px -25px;
+	}
+}
+
+#mouth{
+	background-position: 0 -46px;
+}
+
+.mouthNormal{
+	animation: mNormal 0.25s steps(10) /* 10.6.85s */ forwards;
+}
+
+@keyframes mNormal{
+	to{
+		background-position: -520px -46px;
+	}
+}
+
+#rSleeve{
+	transform: rotateY(180deg);
+}
+
+#lSleeve{
+	transform-origin: 8px 2px;
+}
+
+#rSleeve{
+	transform-origin: 4px 2px;
+}
+
+#rpants{
+	transform-origin: 9px 4px;
+}
+
+#lpants{
+	transform-origin: 11px 4px;
+}
+
+#hipsWithPants{
+	transform-origin: 20px 2px;
+}
+
+.clearfix::after, .clearfix::before{
+	content: '';
+	display: table;
+}
+
+.clearfix::after{
+	clear: both;
+}
+
+.container{
+	width: 80%;
+	margin: 0 auto;	
+}
+
+.flex-bet{
+	display: flex;
+	justify-content: space-between;
+}
+
+.one-fourth{
+	width: 25%;
+	text-align: center;
+	padding-top: 20px;
+	margin-top: 60px;
+	/* flex: 1 1 auto; */
+}
+
+.one-third{
+	width: 25%;
+}
+
+[id^="col-2-"]{
+	width: 50%;	
+	text-align: center;
+	margin: auto;
+}
+
+[id^="col-2-"] p{
+	text-align: left;
+}
+
+[class$='-separator'] ul{
+	margin: 50px auto;
+	display: flex;
+	justify-content: space-around;
+}
+
+[class$='-separator'] li{
+	display: inline-block;
+	width: 3%;
+	text-align: center;
+}
+
+[class$='-separator'] img{
+	width: 100%;
+	height: auto;
+}
+
+#col-2-fruit section{
+	width: 60px;
+	height: 60px;
+	top: 50%;
+	left: 50%;
+	margin-top: -30px;
+	margin-left: -30px;
+	position: relative;
+	background-image: url('../imgs/orange.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+#col-2-fruit section::before{
+	content: '';
+	display: block;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	bottom: 0;
+	left: -10px;
+	background-image: url('../imgs/dragon2.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+#col-2-fruit section::after{
+	content: '';
+	display: block;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	right: -15px;
+	bottom: 0px;
+	background-image: url('../imgs/strawberry.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.mb30{
+	margin-bottom: 30px;
+}
+
+.pt30{
+	padding-top: 30px;
+}
+
+header{
+	width: 100%;
+	height: 60px;
+}
+
+.header-inner{
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+#logo{
+	background: url("../imgs/heart.png") no-repeat center;
+	width: 60px;
+	height: 60px;
+	float: left;
+}
+
+nav{
+	float: right;
+	margin-top: 10px;
+}
+
+#menu-icon{
+	display: none;
+	width: 40px;
+	height: 40px;
+	background: url("../imgs/menu-icon.png") no-repeat center;
+}
+
+nav ul{
+	list-style-type: none;
+}
+
+nav ul li{
+	display: inline-block;
+	font-size: 80%;
+	padding: 10px;
+	float: left;
+}
+
+a{
+	text-decoration: none;
+}
+
+nav a{
+	color: #c3d7df;
+}
+
+nav a:hover{
+	color: #666;
+}
+
+nav a.current{
+	color: #666;
+}
+
+[id$="-text"]{
+	padding: 20px 10px;
+}
+
+#col-2-fruit-text{
+	background-color: #c5f8c8;
+	
+}
+
+#col-2-season-text{
+	background-color: #e8d3ff;
+}
+
+#col-2-body-text{
+	background-color: #ebebe3;
+}
+
+#fruits{
+	background-color: #fab95b;
+}
+
+#season{
+	background-color: #ceddef;
+}
+
+#body{
+	background-color: #75cac3;
+}
+
+#gm{
+	background-color: #f3d516;
+}
+
+footer i{
+	font-size: 100%;
+}
+
+footer p{
+	text-indent: 0;
+	text-align: center;
+}
+
+footer p i{
+	font-size: 60%;
+}
+
+@media screen and (max-width: 768px){
+	#menu-icon{
+		display: inline-block;
+	}
+
+	nav ul{
+		display: none;
+		position: absolute;
+		right: 0;
+		top: 50px;
+		width: 15%;
+		border: 1px solid #ccc;
+		text-align: center;
+		
+	}
+
+	nav:hover ul{
+		display: block;
+	}
+
+	nav ul li{
+		text-align: center;
+		width: 100%;
+		padding: 10px 0;
+	}
+
+	.banner-inner{
+		transform: scale(0.8);
+	}
+
+	.container{
+		width: 60%;
+	}
+
+	.flex-bet{
+		display: block;
+    	justify-content: normal;
+	}
+
+	.one-fourth{
+		width: 100%;
+	    text-align: center;
+	    padding-top: 20px;
+	    margin-top: 10px;	
+	}
+
+	.mb30{
+		margin-bottom: 0;
+	}
+
+	.one-fourth i {
+    	font-size: 300%;
+	}
+
+	.one-fourth h3{
+		padding: 0;
+	}
+
+	[id^="col-2-"] {
+	    width: 100%;
+	    text-align: center;
+	    margin: auto;
+	}
+
+	#col-2-fruit section {
+    	margin-top: 30px;
+    	margin-bottom: 30px;
+    }
+
+    [id^="col-2-"]{
+    	box-sizing: border-box;
+    }
+		
+	#col-2-season{
+		order: 1;
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+	
+	#col-2-season-text{
+		order: 2;
+	}
+
+	.section-season{
+	    display: flex;
+		flex-direction: column;
+	}
+
+	#col-2-body{
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+
+	[class$='-separator'] li:nth-child(6), [class$='-separator'] li:nth-child(7), [class$='-separator'] li:nth-child(8), [class$='-separator'] li:nth-child(9){
+		display: none;
+	}
+
+	[class$='-separator'] ul{
+		margin-bottom: 20px;
+	}
+
+	[class$='-separator'] li{
+		width: 10%;
+	}
+
+	.one-third{
+		width: 100%;
+		padding-top: 30px;
+	}	
+
+	.pt30{
+		padding-top: 0px;
+	}
+
+
+}
+
+/* #hips{
+	position: absolute;
+	width: 45px;
+	height: 17px;
+	left: 183px;
+	top: 347px;
+	background-image: url('../imgs/ae/images/hips_03.png');
+}
+
+#torso{
+	position: absolute;
+	width: 43px;
+	height: 94px;
+	left: 183px;
+	top: 257px;
+	background-image: url('../imgs/ae/images/torso_03.png');
+}
+
+#neck{
+	position: absolute;
+	width: 43px;
+	height: 30px;
+	left: 5px;
+	top: -15px;
+	background-image: url('../imgs/ae/images/neck_03.png');
+}
+
+#vest{
+	position: absolute;
+	width: 43px;
+	height: 94px;
+	left: 0px;
+	top: 0px;
+	background-image: url('../imgs/ae/images/vest_03.png');
+}
+
+#shirt{
+	position: absolute;
+	width: 42px;
+	height: 94px;
+	left: 0px;
+	top: 2px;
+	background-image: url('../imgs/ae/images/torsoShirt_03.png');
+}
+
+#lArm{
+	position: absolute;
+	width: 13px;
+	height: 47px;
+	left: -5px;
+	top: 6px;
+	background-image: url('../imgs/ae/images/sArm_03.png');
+}
+
+#lSleeve{
+	position: absolute;
+	width: 12px;
+	height: 17px;
+	left: 1px;
+	top: 0px;
+	background-image: url('../imgs/ae/images/lSleeve_03.png');
+}
+
+#lForeArm{
+	position: absolute;
+	width: 8px;
+	height: 45px;
+	left: 0px;
+	top: 37px;
+	background-image: url('../imgs/ae/images/lforeArm_03.png');
+}
+
+#lHand{
+	position: absolute;
+	width: 17px;
+	height: 22px;
+	left: -3px;
+	top: 38px;
+	background-image: url('../imgs/ae/images/lHand_03.png');
+}
+
+#rArm{
+	position: absolute;
+	width: 13px;
+	height: 47px;
+	left: 37px;
+	top: 6px;
+	background-image: url('../imgs/ae/images/srArm_03.png');
+
+}
+
+#rSleeve{
+	position: absolute;
+	width: 12px;
+	height: 17px;
+	left: 3px;
+	top: 0px;
+	background-image: url('../imgs/ae/images/lSleeve_03.png');
+}
+
+#rForeArm{
+	position: absolute;
+	width: 8px;
+	height: 45px;
+	left: 4px;
+	top: 38px;
+	background-image: url('../imgs/ae/images/rforeArm_03.png');	
+}
+
+#rHand{
+	position: absolute;
+	width: 17px;
+	height: 22px;
+	left: -6px;
+	top: 37px;
+	background-image: url('../imgs/ae/images/rHand_03.png');
+}
+
+#rThigh{
+	position: absolute;
+	width: 9px;
+	height: 41px;
+	left: 28px;
+	top: 14px;
+	background-image: url('../imgs/ae/images/rThigh_03.png');
+}
+
+#rCalf{
+	position: absolute;
+	width: 11px;
+	height: 40px;
+	left: -1px;
+	top: 31px;
+	background-image: url('../imgs/ae/images/rCalf_03.png');
+}
+
+#rFoot{
+	position: absolute;
+	width: 24px;
+	height: 15px;
+	left: 3px;
+	top: 28px;
+	background-image: url('../imgs/ae/images/rFoot_03.png');
+}
+
+#rShoe{
+	position: absolute;
+	width: 30px;
+	height: 28px;
+	left: -6px;
+	top: 28px;
+	background-image: url('../imgs/ae/images/rShoe_03.png');
+}
+
+#lThigh{
+	position: absolute;
+	width: 9px;
+	height: 41px;
+	left: 8px;
+	top: 14px;
+	background-image: url('../imgs/ae/images/lThigh_03.png');
+}
+
+#lCalf{
+	position: absolute;
+	width: 11px;
+	height: 40px;
+	left: -1px;
+	top: 31px;
+	background-image: url('../imgs/ae/images/lCalf_03.png');
+}
+
+#lFoot{
+	position: absolute;
+	width: 24px;
+	height: 15px;
+	left: -16px;
+	top: 28px;
+	background-image: url('../imgs/ae/images/lFoot_03.png');
+}
+
+#lShoe{
+	position: absolute;
+	width: 30px;
+	height: 28px;
+	left: -14px;
+	top: 28px;
+	background-image: url('../imgs/ae/images/lShoe_03.png');
+}
+
+#lpants{
+	position: absolute;
+	width: 24px;
+	height: 15px;
+	left: -8px;
+	top: -7px;
+	background-image: url('../imgs/ae/images/lpants_03.png');
+}
+
+#rpants{
+	position: absolute;
+	width: 24px;
+	height: 15px;
+	left: -6px;
+	top: -7px;
+	background-image: url('../imgs/ae/images/rpants_03.png');
+}
+
+#headBase{
+	position: absolute;
+	width: 251px;
+	height: 195px;
+	left: -114px;
+	top: -185px;
+	background-image: url('../imgs/ae/images/face_all.png');
+}
+
+#head{
+	position: absolute;
+	width: 251px;
+	height: 195px;
+	left: -114px;
+	top: -185px;
+	background-image: url('../imgs/ae/images/face_03.png');
+}
+
+#lEar{
+	position: absolute;
+	width: 43px;
+	height: 46px;
+	left: 0px;
+	top: 135px;
+	background-image: url('../imgs/ae/images/lEar_03.png');
+}
+
+#rEar{
+	position: absolute;
+	width: 43px;
+	height: 46px;
+	left: 208px;
+	top: 135px;
+	background-image: url('../imgs/ae/images/rEar_03.png');
+}
+
+#hairBase{
+	position: absolute;
+	width: 250px;
+	height: 174px;
+	left: 0px;
+	top: 21px;
+	background-image: url('../imgs/ae/images/hairBase_03.png');
+}
+
+#hairs{
+	position: absolute;
+	width: 250px;
+	height: 174px;
+	left: 0px;
+	top: 21px;
+	background-image: url('../imgs/ae/images/hairs_03.png');
+}
+
+#lEyebrow{
+	position: absolute;
+	width: 49px;
+	height: 21px;
+	left: 53px;
+	top: 84px;
+	background-image: url('../imgs/ae/images/eyes.png');
+}
+
+#rEyebrow{
+	position: absolute;
+	width: 49px;
+	height: 21px;
+	left: 154px;
+	top: 85px;
+	background-image: url('../imgs/ae/images/eyes.png');
+}
+ */
+/* body{
+	background-color: #f5f5f5;
+	color: #67727a;
+	font-family: 'Alegreya', sans-serif;
+}
+
+h2{
+	font-size: 250%;
+	font-weight: 700;
+	text-align: center;
+	padding-top: 2%;
+}
+
+h3{
+	font-size: 175%;
+	line-height: 155%;
+	padding: 5% 0;
+	font-weight: 400;
+}
+
+p{
+	font-size: 160%;
+	line-height: 150%;
+	padding: 3%;
+	text-indent: 2%;
+	text-align: justify;
+}
+
+img{
+	max-width: 100%;
+	height: auto;
+	width: auto;
+}
+
+header{
+	background-color: #6991ac;
+	width: 100%;
+	height: 86px;
+}
+
+#header-inner{
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+#logo{
+	float: left;
+	margin: 20px;
+	width: 42px;
+	height: 42px;
+	background: url(../imgs/heart.png) no-repeat center;
+}
+
+nav{
+	float: right;
+	padding: 25px 20px 0 0;
+}
+
+#menu-icon{
+	display: none;
+	width: 40px;
+	height: 40px;
+}
+
+ul{
+	list-style-type: none;
+}
+
+nav ul li{
+	font-size: 150%;
+	display: inline-block;
+	float: left;
+	padding: 10px;
+	font-family: 'Alegreya Sans', sans-serif;
+}
+
+nav ul li a {
+	color: #f5f5f5;
+	text-decoration: none;
+}
+
+nav ui li a:hover{
+	color: #c3d7df;
+}
+
+.current{
+	color: #c3d7df;
+}
+
+.banner{
+	width: 100%;
+	background-color: #6991ac;
+	overflow:hidden
+}
+
+.banner-inner{
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.banner-inner img{
+position: absolute;
+	right: 0;
+	float: right;
+	display: inline-block;
+	width: 340px;
+	height: 412px;
+	margin-right: 200px;
+
+}
+
+.one-fourth{
+	width: 25%;
+	float: left;
+	text-align: center;
+}
+
+#html{
+	background-color: #f1aa90;
+}
+
+#css{
+	background-color: #BeB9ad;
+}
+
+#seo{
+	background-color: #addcd2;
+}
+
+#social{
+	background-color: #a2b2c1;
+}
+
+.one-fourth i{
+	font-size: 500%;
+	color: #f0f0f0;
+	padding: 13% 0 4% 0;
+}
+
+.inner-wrapper{
+	background-color: #c3d7df;
+	
+}
+
+.clearfix::before,
+.clearfix::after{
+        display:table;
+        content:"";
+}
+
+.clearfix::after{
+    clear:both;
+}
+
+article{
+	width: 50%;
+	float: left;
+	height: 100%;
+
+}
+
+#tablet{
+	background-color: #c3d7df;
+}
+
+aside{
+	float: left;
+	width: 50%;
+
+}
+#tablet-2{
+	background-color: #a2b1c1;
+}
+
+.inner-wrapper-2{
+	background-color: #c3d7df;
+	width: 100%;
+	float: left;
+} */
