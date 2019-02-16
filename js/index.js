@@ -249,7 +249,7 @@
 				}else{
 					target.style.display = 'none';
 				}
-			}
+			})
 		}
 	}
 
