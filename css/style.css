@@ -302,9 +302,10 @@ nav{
 
 #menu-icon{
 	display: none;
-	width: 40px;
-	height: 40px;
+	width: 25px;
+	height: 25px;
 	background: url("../imgs/menu-icon.png") no-repeat center;
+	background-size: contain;
 }
 
 nav ul{
