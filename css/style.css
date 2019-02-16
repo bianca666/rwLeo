@@ -331,6 +331,7 @@ nav a.current{
 
 [id$="-text"]{
 	padding: 20px 10px;
+	box-sizing: border-box;
 }
 
 #col-2-fruit-text{
