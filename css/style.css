@@ -488,7 +488,10 @@ footer p i{
 	.pt30{
 		padding-top: 0px;
 	}
-
+	
+	nav{
+		margin-right: 10px;
+	}
 
 }
 
