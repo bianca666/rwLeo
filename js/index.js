@@ -240,6 +240,16 @@
 	 				this.style.backgroundPosition = '0px -134px';
 				}		
 			})
+			
+			var menuIcon = document.querySelector('#menu-icon');
+			menuIcon.addEventListener('click', function(){
+				var target = document.querySelector(menuIcon.getAttribute('data-target'));
+				if(target.style.display == 'none'){
+					target.style.display = 'block';
+				}else{
+					target.style.display = 'none';
+				}
+			}
 		}
 	}
 
