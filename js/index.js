@@ -1,10 +1,7 @@
 (function(){
 	function Leo(){
 		this.div = document.getElementsByClassName("banner-inner")[0];
-
-		this.initDiv = function() {
-			this.div = document.getElementsByClassName("banner-inner")[0];
-		};
+		this.div.style.visibility = 'hidden';
 
 		function addPart(con, src, xPos, yPos, width, height, id){
 			var part = document.createElement("div");
@@ -59,8 +56,8 @@
 			var lFoot = addPart(lCalf, "imgs/lFoot_03.png", -16, 28, 24, 15, "lFoot");
 			var lShoe = addPart(lCalf, 'imgs/lShoe_03.png', -14, 28, 30, 28, "lShoe");
 
-			var lpants = addPart(lThigh, "imgs/lpants_03.png", -8, -7, 24, 15, "lpants");
-			var rpants = addPart(rThigh, "imgs/rpants_03.png", -6, -7, 24, 15, "rpants");
+			var lpants = addPart(lThigh, "imgs/lpants_03.png", -8, -9, 24, 15, "lpants");
+			var rpants = addPart(rThigh, "imgs/rpants_03.png", -6, -9, 24, 15, "rpants");
 
 			var headBase = addPart(neck, "imgs/face_all.png", -114, -185, 251, 195, "headBase");
 			var head = addPart(neck, "imgs/face_03.png", -114, -185, 251, 195, "head");
@@ -186,11 +183,49 @@
 			strawberry3.style.transform = 'rotateY(180deg)';
 
 			var grape = addPart(this.div, "imgs/grape.png", 170, 386, 60, 60, "grape"); 
-			[orange, orange2, strawberry, strawberry2, strawberry3, watermelon, watermelon2, grape, dragonfruit, dragonfruit2, banana].forEach((ele) => {
+			this.fruits = [orange, orange2, strawberry, strawberry2, strawberry3, watermelon, watermelon2, grape, dragonfruit, dragonfruit2, banana].forEach((ele) => {
 				ele.style.backgroundSize = 'contain';
 				ele.style.backgroundRepeat = 'no-repeat';
 			})
 			
+		}
+
+		this.moveAwayAnim = function(){
+
+			this.body.limbs.rThigh.style.transition = 'all 0.3s';
+			this.body.limbs.rCalf.style.transition = 'all 0.3s';
+			this.body.clothes.rShoe.style.transition = 'all 0.3s';
+			this.body.limbs.lThigh.style.transition = 'all 0.3s';
+			this.body.limbs.lCalf.style.transition = 'all 0.3s';
+			this.body.clothes.lShoe.style.transition = 'all 0.3s';
+
+			this.body.hips.style.transform = 'translate(10px, 14px)';
+			this.body.torso.style.transform = 'translate(10px, 14px)';
+			this.body.limbs.rThigh.style.transform = 'rotate(-50deg)';
+			this.body.limbs.rCalf.style.transform = 'rotate(20deg)';
+			this.body.clothes.rShoe.style.transform = 'rotate(10deg)';
+			this.body.limbs.lThigh.style.transform = 'scaleY(0.8) rotate(10deg)';
+			this.body.limbs.lCalf.style.transform = 'rotate(-7deg)';
+			this.body.clothes.lShoe.style.transform = 'scaleY(1.25)';
+
+			setTimeout(() => {
+				var w;
+				if('ontouchstart' in window){
+					w = 625;
+				}else{
+					w = document.documentElement.clientWidth;
+				}
+				console.log(w);
+				this.body.hips.style.left = w + 'px';
+				this.body.torso.style.left = w + 'px';
+				this.body.limbs.rThigh.style.transition = 'all 0.5s';
+				this.body.limbs.rCalf.style.transition = 'all 0.5s';
+				this.body.clothes.rShoe.style.transition = 'all 0.5s';
+				this.body.limbs.lThigh.style.transition = 'all 0.5s';
+				this.body.limbs.lCalf.style.transition = 'all 0.5s';
+				this.body.clothes.lShoe.style.transition = 'all 0.5s';	
+			}, 1000);
+
 		}
 
 		this.init = function(){
@@ -198,7 +233,9 @@
 			this.initParts();
 			this.blink();
 			this.setNormalDressed();
-			
+			window.onload = () => {
+				this.div.style.visibility = 'visible';
+			}
 
 			var leb  = this.body['lEyebrow'];
 			var reb  = this.body['rEyebrow'];
@@ -240,7 +277,7 @@
 	 				this.style.backgroundPosition = '0px -134px';
 				}		
 			})
-			
+
 			var menuIcon = document.querySelector('#menu-icon');
 			menuIcon.addEventListener('click', function(){
 				var target = document.querySelector(menuIcon.getAttribute('data-target'));
@@ -249,10 +286,14 @@
 				}else{
 					target.style.display = 'none';
 				}
-			})
+			});
+
+			/*setTimeout(() => {
+				this.moveAwayAnim();
+			}, 2000);*/
 		}
 	}
 
-	var leo = new Leo();
+	window.leo = new Leo();
 	leo.init();
 })();
