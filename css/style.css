@@ -9,19 +9,22 @@ body{
 	font-family: 'ZCOOL KuaiLe', cursive;
 }
 
-h3{
-	font-size: 150%;
+.one-fourth h3{
+	font-size: 1.5rem;
 	text-align: center;
-	padding-top: 5%;
-	line-height: 300%;
 	color: #535962;
+	line-height: 5rem;
+	padding-bottom: 1rem;
 }
 
 h4{
 	font-size: 120%;
 	font-weight: 700;
-	margin-bottom: 10px;
 	text-align: center;
+}
+
+#habits h4{
+	margin-bottom: 2rem;
 }
 
 p{
@@ -31,8 +34,9 @@ p{
 
 .banner{
 	width: 100%;
-	height: 478px;
+	height: 100vh;
 	position: relative;
+	overflow: hidden;
 }
 
 .banner-inner{
@@ -168,6 +172,38 @@ p{
 	transform-origin: 20px 2px;
 }
 
+#rThigh{
+	transform-origin: 4px 4px;
+}
+
+#rCalf{
+	transform-origin: 5px 5px;
+}
+
+#rpants{
+	transform-origin: 9px 4px;
+}
+
+#lThigh{
+	transform-origin: 5px 4px;
+}
+
+#lCalf{
+	transform-origin: 5px 6px;
+}
+
+#lpants{
+	transform-origin: 11px 4px;
+}
+
+#lArm, #lForeArm, #rArm, #rForeArm, #lHand, #rHand, #lThigh, #lCalf, #rThigh, #rCalf, #lFoot, #rFoot{
+	transition: all 0.5s;
+}
+
+#hips, #torso{
+	transition: all 0.2s;
+}
+
 .clearfix::after, .clearfix::before{
 	content: '';
 	display: table;
@@ -188,11 +224,14 @@ p{
 }
 
 .one-fourth{
-	width: 25%;
 	text-align: center;
-	padding-top: 20px;
-	margin-top: 60px;
-	/* flex: 1 1 auto; */
+	padding-top: 2rem;
+	margin-right: 1rem;
+	flex: 1 0 auto;
+}
+
+.one-fourth:last-child{
+	margin-right: 0;
 }
 
 .one-third{
@@ -209,8 +248,16 @@ p{
 	text-align: left;
 }
 
+[id^="col-2-"] h4{
+	margin-bottom: 1rem;
+}
+
+
+[class$='-separator']{
+	margin-bottom: 6rem;
+}
+
 [class$='-separator'] ul{
-	margin: 50px auto;
 	display: flex;
 	justify-content: space-around;
 }
@@ -227,12 +274,12 @@ p{
 }
 
 #col-2-fruit section{
-	width: 60px;
-	height: 60px;
+	width: 4rem;
+	height: 4rem;
 	top: 50%;
 	left: 50%;
-	margin-top: -30px;
-	margin-left: -30px;
+	margin-top: -2rem;
+	margin-left: -2rem;
 	position: relative;
 	background-image: url('../imgs/orange.png');
 	background-size: contain;
@@ -242,11 +289,11 @@ p{
 #col-2-fruit section::before{
 	content: '';
 	display: block;
-	width: 40px;
-	height: 40px;
+	width: 2.5rem;
+	height: 2.5rem;
 	position: absolute;
 	bottom: 0;
-	left: -10px;
+	left: -0.67rem;
 	background-image: url('../imgs/dragon2.png');
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -255,18 +302,18 @@ p{
 #col-2-fruit section::after{
 	content: '';
 	display: block;
-	width: 30px;
-	height: 30px;
+	width: 2rem;
+	height: 2rem;
 	position: absolute;
-	right: -15px;
+	right: -1rem;
 	bottom: 0px;
 	background-image: url('../imgs/strawberry.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 }
 
-.mb30{
-	margin-bottom: 30px;
+.mb6{
+	margin-bottom: 6rem;
 }
 
 .pt30{
@@ -278,6 +325,7 @@ header{
 	height: 40px;
 	position: fixed;
 	background-color: rgba(0, 0, 0, 0.05);
+	z-index: 999;
 }
 
 .header-inner{
@@ -287,11 +335,11 @@ header{
 
 #logo{
 	background: url("../imgs/heart.png") no-repeat center;
+	background-size: contain;
 	width: 30px;
 	height: 30px;
-	float: left;
-	background-size: contain;
 	margin-top: 5px;
+	float: left;
 	margin-left: 10px;
 }
 
@@ -306,6 +354,8 @@ nav{
 	height: 25px;
 	background: url("../imgs/menu-icon.png") no-repeat center;
 	background-size: contain;
+	margin-right: 5px;
+	
 }
 
 nav ul{
@@ -383,6 +433,12 @@ footer p i{
 }
 
 @media screen and (max-width: 768px){
+	.flex-bet{
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
 	#menu-icon{
 		display: inline-block;
 	}
@@ -391,15 +447,14 @@ footer p i{
 		display: none;
 		position: absolute;
 		right: 0;
-		top: 50px;
+		top: 40px;
 		width: 15%;
-		border: 1px solid #ccc;
+		/* border: 1px solid #ccc; */
 		text-align: center;
-		
 	}
 
 	nav ul li{
-		text-align: center;
+		text-align: right;
 		width: 100%;
 		padding: 10px 0;
 	}
@@ -412,20 +467,9 @@ footer p i{
 		width: 60%;
 	}
 
-	.flex-bet{
-		display: block;
-    	justify-content: normal;
-	}
-
 	.one-fourth{
-		width: 100%;
-	    text-align: center;
-	    padding-top: 20px;
-	    margin-top: 10px;	
-	}
-
-	.mb30{
-		margin-bottom: 0;
+		width: 45%;
+		margin-bottom: 1rem;
 	}
 
 	.one-fourth i {
@@ -434,6 +478,12 @@ footer p i{
 
 	.one-fourth h3{
 		padding: 0;
+		line-height: 5rem;
+		padding-bottom: 1rem;
+	}
+
+	.one-fourth:nth-child(2){
+		margin-right: 0rem;
 	}
 
 	[id^="col-2-"] {
@@ -448,7 +498,7 @@ footer p i{
     }
 
     [id^="col-2-"]{
-    	box-sizing: border-box;
+    	/* box-sizing: border-box; */
     }
 		
 	#col-2-season{
@@ -461,17 +511,12 @@ footer p i{
 		order: 2;
 	}
 
-	.section-season{
-	    display: flex;
-		flex-direction: column;
-	}
-
 	#col-2-body{
 		padding-top: 30px;
 		padding-bottom: 30px;
 	}
 
-	[class$='-separator'] li:nth-child(6), [class$='-separator'] li:nth-child(7), [class$='-separator'] li:nth-child(8), [class$='-separator'] li:nth-child(9){
+	[class$='-separator'] li:nth-child(8), [class$='-separator'] li:nth-child(9){
 		display: none;
 	}
 
@@ -480,20 +525,19 @@ footer p i{
 	}
 
 	[class$='-separator'] li{
-		width: 10%;
+		width: 6%;
 	}
 
 	.one-third{
 		width: 100%;
-		padding-top: 30px;
 	}	
+
+	.one-third p{
+		margin-bottom: 4rem;
+	}
 
 	.pt30{
 		padding-top: 0px;
-	}
-	
-	nav{
-		margin-right: 10px;
 	}
 	
 	nav ul{
@@ -502,4 +546,18 @@ footer p i{
 
 }
 
+@media screen and (max-width: 576px){
+	.one-fourth{
+		width: 100%;
+	}
 
+	.flex-bet{
+		display: block;
+    	justify-content: normal;
+	}
+
+	.section-season{
+	    display: flex;
+		flex-direction: column;
+	}
+}
