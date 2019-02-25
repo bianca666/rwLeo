@@ -160,6 +160,7 @@
 			'class': 'lazy'
 		}
 	];
+
 	var ul = document.querySelector('.gallery ul');
 	fruits.forEach(function(ele){
 		var li = document.createElement('li');
@@ -301,9 +302,9 @@
 		        lazyloadThrottleTimeout = setTimeout(function() {
 		            var scrollTop = window.pageYOffset;
 		            lazyloadImages.forEach(function(img) {
-		                if (img.offsetTop < (window.innerHeight + scrollTop)) {
-		                    img.style.backgroundImage = img.dataset.src;
-				console.log(img.style.backgroundImage);
+		                if (img.offsetTop < (window.innerHeight + scrollTop + 200)) {
+		                    img.style.backgroundImage = 'url(' + img.dataset.src + ')'; 
+		                    console.log(img.style.backgroundImage);
 		                    img.classList.remove('lazy');
 		                }
 		            });
