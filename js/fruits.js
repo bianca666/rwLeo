@@ -270,7 +270,7 @@
 	
 	document.addEventListener("DOMContentLoaded", function() {
 	  var lazyloadImages;    
-
+		console.log('loaded');
 	  if ("IntersectionObserver" in window) {
 	    lazyloadImages = document.querySelectorAll(".lazy");
 	    var imageObserver = new IntersectionObserver(function(entries, observer) {
