@@ -73,8 +73,10 @@
 			head.sdrool = addPart(head, "imgs/sdrool_03.png", 107, 175, 17, 20);
 			var mouth = addPart(head, "imgs/eyes.png", 106, 163, 52, 26, "mouth");
 
-			this.body = {
-				"limbs": {lArm, lForeArm, lHand, rArm, rForeArm, rHand, lThigh, lCalf, lFoot, rThigh, rCalf, rFoot, lpants, rpants},			
+			var moveParts = { 'lArm':lArm , 'lForeArm': lForeArm, 'lHand': lHand, 'rArm': rArm, 'rForeArm': rForeArm, 'rHand': rHand, 'lThigh': lThigh, 'lCalf': lCalf, 'lFoot': lFoot, 'rThigh': rThigh, 'rCalf': rCalf, 'rFoot': rFoot, 'lpants': lpants, 'rpants': rpants};
+
+			this.figure = {
+				"limbs": moveParts,			
 				"head": head,
 				"headBase": headBase,
 				"lEye": lEye,
@@ -86,7 +88,7 @@
 				"hips": hips,
 				'neck': neck,
 				'nose': nose,
-				'clothes': {shirt, lSleeve, rSleeve, lpants, rpants, hips, lShoe, rShoe}
+				'clothes': {"shirt":shirt, "lSleeve":lSleeve, "rSleeve":rSleeve, "lpants":lpants, "rpants":rpants, "hips":hips, "lShoe":lShoe, "rShoe":rShoe}
 			}
 
 			this.state = {
@@ -119,8 +121,8 @@
 		}
 
 		this.blink = function(){
-			var leye = this.body['lEye'];
-			var reye = this.body['rEye'];
+			var leye = this.figure['lEye'];
+			var reye = this.figure['rEye'];
 			leye.style.animationDirection = 'alternate';
 			reye.style.animationDirection = 'alternate';
 			leye.style.backgroundPosition = '-340px 0';
@@ -145,26 +147,26 @@
 		}
 
 		this.setNormalDressed = function(){
-			this.body['clothes'].shirt.style.backgroundImage = "url(imgs/torsoShirt_03.png)";
+			this.figure['clothes'].shirt.style.backgroundImage = "url(imgs/torsoShirt_03.png)";
 
-			this.body['clothes'].lSleeve.style.backgroundImage = "url(imgs/lSleeve_03.png)";
-			this.body['clothes'].rSleeve.style.backgroundImage = "url(imgs/lSleeve_03.png)";
-			this.body['clothes'].hips.style.backgroundImage = "url(imgs/hipsWithPants_03.png)";
-			this.body['clothes'].hips.style.width = '42px';
-			this.body['clothes'].hips.style.height = '15px';
+			this.figure['clothes'].lSleeve.style.backgroundImage = "url(imgs/lSleeve_03.png)";
+			this.figure['clothes'].rSleeve.style.backgroundImage = "url(imgs/lSleeve_03.png)";
+			this.figure['clothes'].hips.style.backgroundImage = "url(imgs/hipsWithPants_03.png)";
+			this.figure['clothes'].hips.style.width = '42px';
+			this.figure['clothes'].hips.style.height = '15px';
 
 				
 
-			this.body['clothes'].lpants.style.backgroundImage = 'url(imgs/pants_03.png)';
-			this.body['clothes'].rpants.style.backgroundImage = 'url(imgs/pants_03.png)';
-			this.body['clothes'].lpants.style.width = '20px';
-			this.body['clothes'].lpants.style.height = '23px';
-			this.body['clothes'].rpants.style.width = '20px';
-			this.body['clothes'].rpants.style.height = '23px';
-			this.body['clothes'].rpants.style.left = '-5px';
-			this.body['limbs'].lFoot.style.opacity = 0;
-			this.body['limbs'].rFoot.style.opacity = 0;
-			this.body['head'].sdrool.style.opacity = 0;
+			this.figure['clothes'].lpants.style.backgroundImage = 'url(imgs/pants_03.png)';
+			this.figure['clothes'].rpants.style.backgroundImage = 'url(imgs/pants_03.png)';
+			this.figure['clothes'].lpants.style.width = '20px';
+			this.figure['clothes'].lpants.style.height = '23px';
+			this.figure['clothes'].rpants.style.width = '20px';
+			this.figure['clothes'].rpants.style.height = '23px';
+			this.figure['clothes'].rpants.style.left = '-5px';
+			this.figure['limbs'].lFoot.style.opacity = 0;
+			this.figure['limbs'].rFoot.style.opacity = 0;
+			this.figure['head'].sdrool.style.opacity = 0;
 		}
 
 		this.placeFruits = function(){
@@ -192,21 +194,21 @@
 
 		this.moveAwayAnim = function(){
 
-			this.body.limbs.rThigh.style.transition = 'all 0.3s';
-			this.body.limbs.rCalf.style.transition = 'all 0.3s';
-			this.body.clothes.rShoe.style.transition = 'all 0.3s';
-			this.body.limbs.lThigh.style.transition = 'all 0.3s';
-			this.body.limbs.lCalf.style.transition = 'all 0.3s';
-			this.body.clothes.lShoe.style.transition = 'all 0.3s';
+			this.figure.limbs.rThigh.style.transition = 'all 0.3s';
+			this.figure.limbs.rCalf.style.transition = 'all 0.3s';
+			this.figure.clothes.rShoe.style.transition = 'all 0.3s';
+			this.figure.limbs.lThigh.style.transition = 'all 0.3s';
+			this.figure.limbs.lCalf.style.transition = 'all 0.3s';
+			this.figure.clothes.lShoe.style.transition = 'all 0.3s';
 
-			this.body.hips.style.transform = 'translate(10px, 14px)';
-			this.body.torso.style.transform = 'translate(10px, 14px)';
-			this.body.limbs.rThigh.style.transform = 'rotate(-50deg)';
-			this.body.limbs.rCalf.style.transform = 'rotate(20deg)';
-			this.body.clothes.rShoe.style.transform = 'rotate(10deg)';
-			this.body.limbs.lThigh.style.transform = 'scaleY(0.8) rotate(10deg)';
-			this.body.limbs.lCalf.style.transform = 'rotate(-7deg)';
-			this.body.clothes.lShoe.style.transform = 'scaleY(1.25)';
+			this.figure.hips.style.transform = 'translate(10px, 14px)';
+			this.figure.torso.style.transform = 'translate(10px, 14px)';
+			this.figure.limbs.rThigh.style.transform = 'rotate(-50deg)';
+			this.figure.limbs.rCalf.style.transform = 'rotate(20deg)';
+			this.figure.clothes.rShoe.style.transform = 'rotate(10deg)';
+			this.figure.limbs.lThigh.style.transform = 'scaleY(0.8) rotate(10deg)';
+			this.figure.limbs.lCalf.style.transform = 'rotate(-7deg)';
+			this.figure.clothes.lShoe.style.transform = 'scaleY(1.25)';
 
 			setTimeout(() => {
 				var w;
@@ -216,14 +218,14 @@
 					w = document.documentElement.clientWidth;
 				}
 				console.log(w);
-				this.body.hips.style.left = w + 'px';
-				this.body.torso.style.left = w + 'px';
-				this.body.limbs.rThigh.style.transition = 'all 0.5s';
-				this.body.limbs.rCalf.style.transition = 'all 0.5s';
-				this.body.clothes.rShoe.style.transition = 'all 0.5s';
-				this.body.limbs.lThigh.style.transition = 'all 0.5s';
-				this.body.limbs.lCalf.style.transition = 'all 0.5s';
-				this.body.clothes.lShoe.style.transition = 'all 0.5s';	
+				this.figure.hips.style.left = w + 'px';
+				this.figure.torso.style.left = w + 'px';
+				this.figure.limbs.rThigh.style.transition = 'all 0.5s';
+				this.figure.limbs.rCalf.style.transition = 'all 0.5s';
+				this.figure.clothes.rShoe.style.transition = 'all 0.5s';
+				this.figure.limbs.lThigh.style.transition = 'all 0.5s';
+				this.figure.limbs.lCalf.style.transition = 'all 0.5s';
+				this.figure.clothes.lShoe.style.transition = 'all 0.5s';	
 			}, 1000);
 
 		}
@@ -233,13 +235,15 @@
 			this.initParts();
 			this.blink();
 			this.setNormalDressed();
-			window.onload = () => {
+			window.addEventListener('load', () => {
 				this.div.style.visibility = 'visible';
-			}
+			}); 
 
-			var leb  = this.body['lEyebrow'];
-			var reb  = this.body['rEyebrow'];
-			var mouth = this.body['mouth'];
+			console.log('test');
+
+			var leb  = this.figure['lEyebrow'];
+			var reb  = this.figure['rEyebrow'];
+			var mouth = this.figure['mouth'];
 			
 			leb.classList.add("eblNormal");
 			reb.classList.add("ebrNormal");
@@ -278,15 +282,9 @@
 				}		
 			})
 
-			var menuIcon = document.querySelector('#menu-icon');
-			menuIcon.addEventListener('click', function(){
-				var target = document.querySelector(menuIcon.getAttribute('data-target'));
-				if(target.style.display == '' || target.style.display == 'none'){
-					target.style.display = 'block';
-				}else{
-					target.style.display = 'none';
-				}
-			});
+			
+
+			
 
 			/*setTimeout(() => {
 				this.moveAwayAnim();
