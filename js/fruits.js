@@ -179,6 +179,7 @@
 	var lis = document.querySelectorAll('.gallery li');
 	var areas = document.querySelectorAll('#nameArea span');
 	var sndPlayEnded = false;
+	var sndTimeout = 3000;
 
 	lis.forEach(function(ele){
 		ele.addEventListener('click', function(){
@@ -236,7 +237,13 @@
 				esnd.removeEventListener('ended', remListners);
 				sndPlayEnded = false;
 			}
-			
+			setTimeout(function(){
+				if(!sndPlayEnded){
+					sndPlayEnded = true;
+					csnd.src = '';
+					esnd.src = '';				
+				}
+			}, sndTimeout);
 		}, false);
 	});
 
