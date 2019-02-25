@@ -178,15 +178,15 @@
 
 	var lis = document.querySelectorAll('.gallery li');
 	var areas = document.querySelectorAll('#nameArea span');
-	var sndPlayEnded = false;
-	var sndTimeout = 3000;
+	var sndPlayEnded = true;
+	var timeout = 3000;
 
 	lis.forEach(function(ele){
 		ele.addEventListener('click', function(){
-			if(sndPlayEnded){
+			if(!sndPlayEnded){
 				return;
 			}
-			sndPlayEnded = true;
+			sndPlayEnded = false;
 			var names = this.getAttribute('data-name').split(',');
 			var cname = areas[0].innerHTML = names[0];
 			var ename = areas[1].innerHTML = names[1];
@@ -225,8 +225,26 @@
 			var esnd = new Audio(ename);
 			/*'http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&spd=4&text='+ename*/
 			/*'http://media.shanbay.com/audio/us/'+ename+'.mp3'*/
-			csnd.play();
+			
 			csnd.addEventListener('ended', playESnd);
+			var cpromise = csnd.play();
+			if(cpromise !== undefined) {
+				cpromise.catch(error => {
+					console.log(error);
+				}).then(() => {
+
+				});
+			}
+
+			var sndTimeout = setTimeout(function(){
+				if(!sndPlayEnded){
+					sndPlayEnded = true;
+					csnd.src = '';
+					esnd.src = '';
+					console.log('timeout');
+				}
+			}, timeout);
+
 			function playESnd(){	
 				esnd.play();
 				esnd.addEventListener('ended', remListners);
@@ -235,15 +253,10 @@
 			function remListners() {
 				csnd.removeEventListener('ended', playESnd);
 				esnd.removeEventListener('ended', remListners);
-				sndPlayEnded = false;
+				sndPlayEnded = true;
+				clearTimeout(sndTimeout);
 			}
-			setTimeout(function(){
-				if(!sndPlayEnded){
-					sndPlayEnded = true;
-					csnd.src = '';
-					esnd.src = '';				
-				}
-			}, sndTimeout);
+			
 		}, false);
 	});
 
