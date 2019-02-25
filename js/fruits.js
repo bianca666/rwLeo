@@ -183,10 +183,11 @@
 
 	lis.forEach(function(ele){
 		ele.addEventListener('click', function(){
+
 			if(!sndPlayEnded){
 				return;
 			}
-			sndPlayEnded = false;
+			
 			var names = this.getAttribute('data-name').split(',');
 			var cname = areas[0].innerHTML = names[0];
 			var ename = areas[1].innerHTML = names[1];
@@ -197,7 +198,12 @@
 				areas[1].style.fontSize = '2rem';
 				areas[1].style.marginTop = '0.5rem';
 			}
+			if('ontouchstart' in window) {
+				return;
+			}
+			sndPlayEnded = false;
 			cname = encodeURI(cname);
+			console.log(cname);
 			var csnd = new Audio('http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname);
 			switch (ename){
 				case 'durian':
