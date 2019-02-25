@@ -303,6 +303,7 @@
 		            lazyloadImages.forEach(function(img) {
 		                if (img.offsetTop < (window.innerHeight + scrollTop)) {
 		                    img.style.backgroundImage = img.dataset.src;
+				console.log(img.style.backgroundImage);
 		                    img.classList.remove('lazy');
 		                }
 		            });
