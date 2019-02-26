@@ -214,7 +214,14 @@
 			var audioC = this.querySelector('audio');
 			
 			
-			audioC.play();
+			var cpromise = audioC.play();
+			if(cpromise !== undefined) {
+				cpromise.catch(error => {
+					console.log(error);
+				}).then(() => {
+
+				});
+			}
 
 			return;
 
