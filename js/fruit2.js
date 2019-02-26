@@ -185,6 +185,7 @@
 				if(!Audio){
 					isAudio = true;
 					window.audio = new Audio();
+					console.log('safari audio fix');
 					document.removeEventListener('touchstart', fixAudio, false);
 				}
 			};
