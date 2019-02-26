@@ -201,7 +201,7 @@
 	var lis = document.querySelectorAll('.gallery li');
 	var areas = document.querySelectorAll('#nameArea span');
 	var sndPlayEnded = true;
-	var timeout = 3000;
+	var timeout = 4000;
 	var startEvent = ('ontouchstart' in window) ? 'touchstart' : 'click';
 
 	lis.forEach(function(ele){
