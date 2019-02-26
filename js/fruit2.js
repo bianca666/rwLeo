@@ -185,7 +185,8 @@
 			var fixAudio = function(){
 				if(!isAudio){
 					isAudio = true;
-					window.audio = new Audio();
+					window.audioC = new Audio();
+					window.audioE = new Audio();
 					console.log('safari audio fix');
 					document.removeEventListener('touchstart', fixAudio, false);
 				}
@@ -201,17 +202,16 @@
 
 	var lis = document.querySelectorAll('.gallery li');
 	var areas = document.querySelectorAll('#nameArea span');
-	/*var sndPlayEnded = true;
-	var timeout = 3000;*/
+	var sndPlayEnded = true;
+	var timeout = 3000;
 	var startEvent = ('ontouchstart' in window) ? 'touchstart' : 'click';
 
 	lis.forEach(function(ele){
 		ele.addEventListener(startEvent, function(){
 
-			/*if(!sndPlayEnded){
+			if(!sndPlayEnded){
 				return;
-			}*/
-
+			}
 
 			
 			var names = this.getAttribute('data-name').split(',');
@@ -227,34 +227,28 @@
 			/*if('ontouchstart' in window) {
 				return;
 			}*/
-			/*sndPlayEnded = false;*/
+			sndPlayEnded = false;
 			cname = encodeURI(cname);
 			//console.log(cname);
-			var audio;
-			if(window.audio){
-				audio = window.audio;
-				audio.src = 'https://dictionary.cambridge.org/media/english/us_pron/e/eus/eus75/eus75865.mp3';
-				console.log('safari');
+			var audioC, audioE;
+			if(window.audioC){
+				audioC = window.audioC;
+				audioE = window.audioE;
+				audioC.src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname;
+				audioE.src = 'http://dict.youdao.com/dictvoice?audio='+ename;
 			}else{
-				audio = new Audio('https://dictionary.cambridge.org/media/english/us_pron/e/eus/eus75/eus75865.mp3');
+				audioC = new Audio('http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname);
+				audioE = new Audio('http://dict.youdao.com/dictvoice?audio='+ename);
 			}
 			
 
-			
-			var cpromise = audio.play();
-			if(cpromise !== undefined) {
-				cpromise.catch(error => {
-					console.log(error);
-				}).then(() => {
-
-				});
-			}
-
-			return;
 
 
 			
 			/*http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname*/
+
+
+			/*
 			switch (ename){
 				case 'durian':
 					ename = 'https://dictionary.cambridge.org/media/english/us_pron/e/eus/eus09/eus09138.mp3';
@@ -274,20 +268,20 @@
 				/*case 'cape gooseberry':
 					ename = 'https://dictionary.cambridge.org/media/english/us_pron/c/cdo/cdo03/cdo0318uscape0757.mp3';
 					break;*/
-				default:
+				/*default:
 					ename = 'http://dict.youdao.com/dictvoice?audio='+ename;
 			}
 
-			var esnd = new Audio('audios/bananaC');
+			var esnd = new Audio('audios/bananaC');*/
 			/*'http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&spd=4&text='+ename*/
 			/*'http://media.shanbay.com/audio/us/'+ename+'.mp3'*/
 			
 			
-			csnd.addEventListener('ended', playESnd);
-			var cpromise = csnd.play();
+			audioC.addEventListener('ended', playESnd);
+			var cpromise = audioC.play();
 			if(cpromise !== undefined) {
 				cpromise.catch(error => {
-					console.log(error);
+					console.log('cerror:', error);
 				}).then(() => {
 
 				});
@@ -303,13 +297,13 @@
 			}, timeout);
 
 			function playESnd(){	
-				esnd.play();
-				esnd.addEventListener('ended', remListners);
+				audioE.play();
+				audioE.addEventListener('ended', remListners);
 			}
 
 			function remListners() {
-				csnd.removeEventListener('ended', playESnd);
-				esnd.removeEventListener('ended', remListners);
+				audioC.removeEventListener('ended', playESnd);
+				audioE.removeEventListener('ended', remListners);
 				sndPlayEnded = true;
 				clearTimeout(sndTimeout);
 			}
