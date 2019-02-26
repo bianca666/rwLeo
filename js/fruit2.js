@@ -182,9 +182,8 @@
 		console.log('aaa');
 		if('ontouchstart' in window){
 			var isAudio = false;
-			console.log('bbb');
 			var fixAudio = function(){
-				if(!Audio){
+				if(!isAudio){
 					isAudio = true;
 					window.audio = new Audio();
 					console.log('safari audio fix');
