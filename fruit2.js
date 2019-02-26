@@ -161,23 +161,41 @@
 		}
 	];
 
-	var ul = document.querySelector('.gallery ul');
-	fruits.forEach(function(ele){
-		var li = document.createElement('li');
-		li.setAttribute('data-name', ele.name);
-		li.setAttribute('data-src', ele.src);
-		
+	var init = function() {   
+		/*load lis into ul*/
+		var ul = document.querySelector('.gallery ul');
+		fruits.forEach(function(ele){
+			var li = document.createElement('li');
+			li.setAttribute('data-name', ele.name);
+			li.setAttribute('data-src', ele.src);
+			
 
-		if(ele.class && ele.class == 'lazy'){
-			li.classList.add('lazy');
-		}else{
-			li.style.backgroundImage = 'url(' + ele.src + ')';
+			if(ele.class && ele.class == 'lazy'){
+				li.classList.add('lazy');
+			}else{
+				li.style.backgroundImage = 'url(' + ele.src + ')';
+			}
+			ul.appendChild(li);	
+		});
+
+		/*safari audio fix*/
+		console.log('aaa');
+		if('ontouchstart' in window){
+			var isAudio = false;
+			var fixAudio = function(){
+				if(!Audio){
+					isAudio = true;
+					window.audio = new Audio();
+					console.log('safari audio fix');
+					document.removeEventListener('touchstart', fixAudio, false);
+				}
+			};
+			document.addEventListener('touchstart', fixAudio, false);
 		}
-		var audioC = document.createElement('audio');
-		li.appendChild(audioC);
-		ul.appendChild(li);
-		
-	});
+
+	}
+	
+	init();
 
 	var lis = document.querySelectorAll('.gallery li');
 	var areas = document.querySelectorAll('#nameArea span');
@@ -209,12 +227,25 @@
 			/*sndPlayEnded = false;*/
 			cname = encodeURI(cname);
 			//console.log(cname);
-
-			var audioC = this.querySelector('audio');
-			console.log(audioC);
+			var audio;
+			if(window.audio){
+				audio = window.audio;
+				audio.src = 'audios/appleC';
+				console.log('safari');
+			}else{
+				audio = new Audio('audios/appleC');
+			}
 			
-			audioC.src = 'audios/appleC';
-			audioC.play();
+
+			
+			var cpromise = audio.play();
+			if(cpromise !== undefined) {
+				cpromise.catch(error => {
+					console.log(error);
+				}).then(() => {
+
+				});
+			}
 
 			return;
 
