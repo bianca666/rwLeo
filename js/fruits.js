@@ -199,9 +199,9 @@
 				areas[1].style.fontSize = '2rem';
 				areas[1].style.marginTop = '0.5rem';
 			}
-			if('ontouchstart' in window) {
+			/*if('ontouchstart' in window) {
 				return;
-			}
+			}*/
 			sndPlayEnded = false;
 			cname = encodeURI(cname);
 			console.log(cname);
@@ -232,7 +232,8 @@
 			var esnd = new Audio(ename);
 			/*'http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&spd=4&text='+ename*/
 			/*'http://media.shanbay.com/audio/us/'+ename+'.mp3'*/
-			
+			csnd.touchstart = 'true';
+			esnd.touchstart = 'true';
 			csnd.addEventListener('ended', playESnd);
 			var cpromise = csnd.play();
 			if(cpromise !== undefined) {
