@@ -205,7 +205,8 @@
 			sndPlayEnded = false;
 			cname = encodeURI(cname);
 			console.log(cname);
-			var csnd = new Audio('http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname);
+			var csnd = new Audio('audios/appleC');
+			/*http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname*/
 			switch (ename){
 				case 'durian':
 					ename = 'https://dictionary.cambridge.org/media/english/us_pron/e/eus/eus09/eus09138.mp3';
@@ -229,11 +230,10 @@
 					ename = 'http://dict.youdao.com/dictvoice?audio='+ename;
 			}
 
-			var esnd = new Audio(ename);
+			var esnd = new Audio('audios/bananaC');
 			/*'http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&spd=4&text='+ename*/
 			/*'http://media.shanbay.com/audio/us/'+ename+'.mp3'*/
-			csnd.touchstart = 'true';
-			esnd.touchstart = 'true';
+			
 			csnd.addEventListener('ended', playESnd);
 			var cpromise = csnd.play();
 			if(cpromise !== undefined) {
