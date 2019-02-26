@@ -161,24 +161,39 @@
 		}
 	];
 
-	var ul = document.querySelector('.gallery ul');
-	fruits.forEach(function(ele){
-		var li = document.createElement('li');
-		li.setAttribute('data-name', ele.name);
-		li.setAttribute('data-src', ele.src);
-		
+	var init = function() {   
+		/*load lis into ul*/
+		var ul = document.querySelector('.gallery ul');
+		fruits.forEach(function(ele){
+			var li = document.createElement('li');
+			li.setAttribute('data-name', ele.name);
+			li.setAttribute('data-src', ele.src);
+			
 
-		if(ele.class && ele.class == 'lazy'){
-			li.classList.add('lazy');
-		}else{
-			li.style.backgroundImage = 'url(' + ele.src + ')';
+			if(ele.class && ele.class == 'lazy'){
+				li.classList.add('lazy');
+			}else{
+				li.style.backgroundImage = 'url(' + ele.src + ')';
+			}
+			ul.appendChild(li);	
+		});
+
+		/*safari audio fix*/
+		if(/i(Phone|P(o|a)d)/.test(navigator.userAgent)){
+			var isAudio = false;
+			var fixAudio = function(){
+				if(!Audio){
+					isAudio = true;
+					window.audio = new Audio();
+					document.removeEventListener('touchstart', fixAudio, false);
+				}
+			};
+			document.addEventListener('touchstart', fixAudio, false);
 		}
-		var audioC = document.createElement('audio');
-		audioC.src = 'audios/appleC';
-		li.appendChild(audioC);
-		ul.appendChild(li);
-		
-	});
+
+	}
+	
+	init();
 
 	var lis = document.querySelectorAll('.gallery li');
 	var areas = document.querySelectorAll('#nameArea span');
@@ -210,11 +225,18 @@
 			/*sndPlayEnded = false;*/
 			cname = encodeURI(cname);
 			//console.log(cname);
+			var audio;
+			if(window.audio){
+				audio = window.audio;
+				audio.src = 'audios/appleC';
+				console.log('safari');
+			}else{
+				audio = new Audio('audios/appleC');
+			}
+			
 
-			var audioC = this.querySelector('audio');
 			
-			
-			var cpromise = audioC.play();
+			var cpromise = audio.play();
 			if(cpromise !== undefined) {
 				cpromise.catch(error => {
 					console.log(error);
