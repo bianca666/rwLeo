@@ -179,7 +179,7 @@
 		});
 
 		/*safari audio fix*/
-		if(/i(Phone|P(o|a)d)/.test(navigator.userAgent)){
+		if('ontouchstart' in window){
 			var isAudio = false;
 			var fixAudio = function(){
 				if(!Audio){
