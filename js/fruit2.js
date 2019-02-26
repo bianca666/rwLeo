@@ -234,11 +234,12 @@
 			if(window.audioC){
 				audioC = window.audioC;
 				audioE = window.audioE;
-				audioC.src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname;
-				audioE.src = 'http://dict.youdao.com/dictvoice?audio='+ename;
+				audioC.src = 'http://media.shanbay.com/audio/us/'+ename+'.mp3';
+				/*'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname;*/
+				audioE.src = 'http://media.shanbay.com/audio/us/'+ename+'.mp3';
 			}else{
-				audioC = new Audio('http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname);
-				audioE = new Audio('http://dict.youdao.com/dictvoice?audio='+ename);
+				audioC = new Audio('http://media.shanbay.com/audio/us/'+ename+'.mp3');/*new Audio('http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname);*/
+				audioE = new Audio('http://media.shanbay.com/audio/us/'+ename+'.mp3');
 			}
 			
 
@@ -297,7 +298,15 @@
 			}, timeout);
 
 			function playESnd(){	
-				audioE.play();
+				var epromise = audioE.play();
+				if(epromise !== undefined) {
+					epromise.catch(error => {
+						console.log('eerror:', error);
+					}).then(() => {
+
+					});
+				}
+
 				audioE.addEventListener('ended', remListners);
 			}
 
