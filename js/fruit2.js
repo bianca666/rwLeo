@@ -191,6 +191,8 @@
 				}
 			};
 			document.addEventListener('touchstart', fixAudio, false);
+
+
 		}
 
 	}
@@ -201,9 +203,10 @@
 	var areas = document.querySelectorAll('#nameArea span');
 	/*var sndPlayEnded = true;
 	var timeout = 3000;*/
+	var startEvent = ('ontouchstart' in window) ? 'touchstart' : 'click';
 
 	lis.forEach(function(ele){
-		ele.addEventListener('click', function(){
+		ele.addEventListener(startEvent, function(){
 
 			/*if(!sndPlayEnded){
 				return;
