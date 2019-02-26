@@ -182,7 +182,7 @@
 		console.log('aaa');
 		if('ontouchstart' in window){
 			var isAudio = false;
-			
+			console.log('bbb');
 			var fixAudio = function(){
 				if(!Audio){
 					isAudio = true;
