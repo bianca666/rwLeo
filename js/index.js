@@ -282,10 +282,6 @@
 				}		
 			})
 
-			
-
-			
-
 			/*setTimeout(() => {
 				this.moveAwayAnim();
 			}, 2000);*/
