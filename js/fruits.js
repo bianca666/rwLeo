@@ -188,6 +188,8 @@
 			if(!sndPlayEnded){
 				return;
 			}
+
+			
 			
 			var names = this.getAttribute('data-name').split(',');
 			var cname = areas[0].innerHTML = names[0];
@@ -205,6 +207,8 @@
 			sndPlayEnded = false;
 			cname = encodeURI(cname);
 			console.log(cname);
+
+
 			var csnd = new Audio('audios/appleC');
 			/*http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname*/
 			switch (ename){
@@ -233,6 +237,10 @@
 			var esnd = new Audio('audios/bananaC');
 			/*'http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&spd=4&text='+ename*/
 			/*'http://media.shanbay.com/audio/us/'+ename+'.mp3'*/
+			if(!csnd.touchstart) {
+				csnd.touchstart = 'true';
+				esnd.touchstart = 'true';
+			}
 			
 			csnd.addEventListener('ended', playESnd);
 			var cpromise = csnd.play();
@@ -304,8 +312,7 @@
 		            var scrollTop = window.pageYOffset;
 		            lazyloadImages.forEach(function(img) {
 		                if (img.offsetTop < (window.innerHeight + scrollTop + 200)) {
-		                    img.style.backgroundImage = 'url(' + img.dataset.src + ')'; 
-		                    console.log(img.style.backgroundImage);
+		                    img.style.backgroundImage = 'url(' + img.dataset.src + ')';
 		                    img.classList.remove('lazy');
 		                }
 		            });
