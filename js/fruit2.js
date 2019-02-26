@@ -233,10 +233,10 @@
 			var audio;
 			if(window.audio){
 				audio = window.audio;
-				audio.src = 'audios/appleC';
+				audio.src = 'https://dictionary.cambridge.org/media/english/us_pron/e/eus/eus75/eus75865.mp3';
 				console.log('safari');
 			}else{
-				audio = new Audio('audios/appleC');
+				audio = new Audio('https://dictionary.cambridge.org/media/english/us_pron/e/eus/eus75/eus75865.mp3');
 			}
 			
 
