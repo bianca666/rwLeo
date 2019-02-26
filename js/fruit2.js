@@ -9,7 +9,7 @@
 			'src': 'images/banana_03.png'
 		},
 		{
-			'name': '桃子,peach',
+			'name': '桃,peach',
 			'src': 'images/peach_03.png'
 		},
 		{
@@ -63,7 +63,7 @@
 			'class': 'lazy'
 		},
 		{
-			'name': '火龙果,dragonfruit',
+			'name': '火龙果,pitaya',
 			'src': 'images/dragon-fruit_03.png',
 			'class': 'lazy'
 		},
@@ -91,16 +91,16 @@
 			'src': 'images/pomegranate_03.png',
 			'class': 'lazy'
 		},{
-			'name': '橘子,tangerine',
+			'name': '橘子,mandarin',
 			'src': 'images/tangerine_03.png',
 			'class': 'lazy'
 		},{
-			'name': '柚子,pomelo',
+			'name': '柚子,shaddock',
 			'src': 'images/pomelo_03.png',
 			'class': 'lazy'
 		},{
-			'name': '哈密瓜,cantaloupe',
-			'src': 'images/cantaloupe_03.png',
+			'name': '哈密瓜,melon',
+			'src': 'images/melon_03.png',
 			'class': 'lazy'
 		},{
 			'name': '李子,plum',
@@ -115,8 +115,8 @@
 			'src': 'images/cape-gooseberry_03.png',
 			'class': 'lazy'
 		},{
-			'name': '番石榴,grava',
-			'src': 'images/grava_03.png 	',
+			'name': '番石榴,guava',
+			'src': 'images/guava_03.png 	',
 			'class': 'lazy'
 		},{
 			'name': '树莓,rasberry',
@@ -179,7 +179,6 @@
 		});
 
 		/*safari audio fix*/
-		console.log('aaa');
 		if('ontouchstart' in window){
 			var isAudio = false;
 			var fixAudio = function(){
@@ -187,7 +186,6 @@
 					isAudio = true;
 					window.audioC = new Audio();
 					window.audioE = new Audio();
-					console.log('safari audio fix');
 					document.removeEventListener('touchstart', fixAudio, false);
 				}
 			};
@@ -228,26 +226,47 @@
 				return;
 			}*/
 			sndPlayEnded = false;
-			cname = encodeURI(cname);
-			//console.log(cname);
+			/*cname = encodeURI(cname);
+			//console.log(cname);*/
 			var audioC, audioE;
+			cname = ename;
+			if(ename == 'cape gooseberry'){
+				cname = 'capegooseberry';
+			}else if(ename == 'wax apple'){
+				cname = 'waxapple';
+			}
+
+			var esrc;
+			switch(ename) {
+				case 'cape gooseberry':
+					esrc = 'https://dictionary.cambridge.org/media/english/us_pron/c/cdo/cdo03/cdo0318uscape0757.mp3';
+					break;
+				/*case 'dragonfruit':
+					esrc = 'https://dictionary.cambridge.org/media/english/us_pron/c/cdo/cdo03/cdo0318usdrag1506.mp3';
+					break;*/
+				case 'kiwi':
+					esrc = 'https://dictionary.cambridge.org/media/english/us_pron/u/usk/uskil/uskillj030.mp3';
+					break;
+				case 'wax apple':
+					esrc = 'sound/waxappleE.mp3';
+					break;
+				default:
+					esrc = 'http://media.shanbay.com/audio/us/'+ename+'.mp3';
+			}
+
+
 			if(window.audioC){
 				audioC = window.audioC;
 				audioE = window.audioE;
-				audioC.src = 'sound/菠萝蜜.mp3';
+				audioC.src = 'sound/'+ cname +'.mp3';
 				/*'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname;*/
-				audioE.src = 'http://media.shanbay.com/audio/us/'+ename+'.mp3';
+
+				audioE.src = esrc;
 			}else{
-				audioC = new Audio('sound/菠萝蜜.mp3');
+				audioC = new Audio('sound/'+ cname +'.mp3');
 				/*new Audio('http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname);*/
-				audioE = new Audio('http://media.shanbay.com/audio/us/'+ename+'.mp3');
+				audioE = new Audio(esrc);
 			}
-			
-
-
-
-			
-			/*http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname*/
 
 
 			/*
@@ -325,7 +344,6 @@
 	
 	/*document.addEventListener("DOMContentLoaded", function() {*/
 	window.onload = function() {
-		console.log('loaded');
 		var lazyloadImages;    
 
 	  	if ("IntersectionObserver" in window) {
