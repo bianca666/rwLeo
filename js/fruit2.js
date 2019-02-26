@@ -174,6 +174,7 @@
 			li.style.backgroundImage = 'url(' + ele.src + ')';
 		}
 		var audioC = document.createElement('audio');
+		audioC.src = 'audios/appleC';
 		li.appendChild(audioC);
 		ul.appendChild(li);
 		
@@ -211,9 +212,8 @@
 			//console.log(cname);
 
 			var audioC = this.querySelector('audio');
-			console.log(audioC);
 			
-			audioC.src = 'audios/appleC';
+			
 			audioC.play();
 
 			return;
