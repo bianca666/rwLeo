@@ -234,11 +234,12 @@
 			if(window.audioC){
 				audioC = window.audioC;
 				audioE = window.audioE;
-				audioC.src = 'http://media.shanbay.com/audio/us/'+ename+'.mp3';
+				audioC.src = 'sound/菠萝蜜.mp3';
 				/*'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname;*/
 				audioE.src = 'http://media.shanbay.com/audio/us/'+ename+'.mp3';
 			}else{
-				audioC = new Audio('http://media.shanbay.com/audio/us/'+ename+'.mp3');/*new Audio('http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname);*/
+				audioC = new Audio('sound/菠萝蜜.mp3');
+				/*new Audio('http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname);*/
 				audioE = new Audio('http://media.shanbay.com/audio/us/'+ename+'.mp3');
 			}
 			
