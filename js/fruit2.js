@@ -290,8 +290,8 @@
 			var sndTimeout = setTimeout(function(){
 				if(!sndPlayEnded){
 					sndPlayEnded = true;
-					csnd.src = '';
-					esnd.src = '';
+					audioC.src = '';
+					audioE.src = '';
 					console.log('timeout');
 				}
 			}, timeout);
