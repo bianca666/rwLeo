@@ -186,26 +186,36 @@
 					isAudio = true;
 					window.audioC = new Audio();
 					window.audioE = new Audio();
-					document.removeEventListener('touchstart', fixAudio, false);
+					document.removeEventListener('touchstart', fixAudio, false);  
 				}
 			};
-			document.addEventListener('touchstart', fixAudio, false);
+			document.addEventListener('touchstart', fixAudio, false); 
 
 
 		}
+	}
 
+	function playAudio(audio) {
+		var promise = audio.play();
+		if(promise !== undefined) {
+			promise.catch(error => {
+				console.log('error:', error);
+			}).then(() => {
+
+			});
+		}
 	}
 	
 	init();
-
+	var currPlayState = [1, 1, 1];
 	var lis = document.querySelectorAll('.gallery li');
 	var areas = document.querySelectorAll('#nameArea span');
 	var sndPlayEnded = true;
-	var timeout = 4000;
+	var timeout = 4300;
 	var startEvent = ('ontouchstart' in window) ? 'touchstart' : 'click';
 
 	lis.forEach(function(ele){
-		ele.addEventListener(startEvent, function(){
+		ele.addEventListener('click', function(){
 
 			if(!sndPlayEnded){
 				return;
@@ -222,12 +232,13 @@
 				areas[1].style.fontSize = '2rem';
 				areas[1].style.marginTop = '0.5rem';
 			}
-			/*if('ontouchstart' in window) {
+
+			if(currPlayState[0] == 0 || (currPlayState[1] == 0 && currPlayState[2] == 0)) {
 				return;
-			}*/
+			}
+
 			sndPlayEnded = false;
-			/*cname = encodeURI(cname);
-			//console.log(cname);*/
+
 			var audioC, audioE;
 			cname = ename;
 			if(ename == 'cape gooseberry'){
@@ -241,9 +252,6 @@
 				case 'cape gooseberry':
 					esrc = 'https://dictionary.cambridge.org/media/english/us_pron/c/cdo/cdo03/cdo0318uscape0757.mp3';
 					break;
-				/*case 'dragonfruit':
-					esrc = 'https://dictionary.cambridge.org/media/english/us_pron/c/cdo/cdo03/cdo0318usdrag1506.mp3';
-					break;*/
 				case 'kiwi':
 					esrc = 'https://dictionary.cambridge.org/media/english/us_pron/u/usk/uskil/uskillj030.mp3';
 					break;
@@ -253,7 +261,6 @@
 				default:
 					esrc = 'http://media.shanbay.com/audio/us/'+ename+'.mp3';
 			}
-
 
 			if(window.audioC){
 				audioC = window.audioC;
@@ -298,14 +305,31 @@
 			/*'http://media.shanbay.com/audio/us/'+ename+'.mp3'*/
 			
 			
-			audioC.addEventListener('ended', playESnd);
-			var cpromise = audioC.play();
-			if(cpromise !== undefined) {
-				cpromise.catch(error => {
-					console.log('cerror:', error);
-				}).then(() => {
+			/*audioC.addEventListener('ended', playESnd);*/
 
-				});
+			if(currPlayState[1] == 1 && currPlayState[2] == 0){
+
+				/*audioC.removeEventListener('ended', playESnd);*/
+				audioC.addEventListener('ended', endBothAudios);	
+				playAudio(audioC);
+
+
+			}else if(currPlayState[1] == 0 && currPlayState[2] == 1){
+				/*audioC.removeEventListener('ended', playESnd);*/
+				audioE.addEventListener('ended', endBothAudios);
+				playAudio(audioE);
+
+			}else{
+				audioC.addEventListener('ended', playESnd);
+				playAudio(audioC);	
+			}
+
+			function endBothAudios(e){
+				sndPlayEnded = true;
+				audioC.src = '';
+				audioE.src = '';
+				clearTimeout(sndTimeout);
+				e.target.removeEventListener('ended', endBothAudios);
 			}
 
 			var sndTimeout = setTimeout(function(){
@@ -313,33 +337,71 @@
 					sndPlayEnded = true;
 					audioC.src = '';
 					audioE.src = '';
+					clearTimeout(sndTimeout);
 					console.log('timeout');
 				}
 			}, timeout);
 
-			function playESnd(){	
-				var epromise = audioE.play();
-				if(epromise !== undefined) {
-					epromise.catch(error => {
-						console.log('eerror:', error);
-					}).then(() => {
-
-					});
-				}
-
+			function playESnd() {
 				audioE.addEventListener('ended', remListners);
+				playAudio(audioE);
 			}
 
 			function remListners() {
 				audioC.removeEventListener('ended', playESnd);
 				audioE.removeEventListener('ended', remListners);
 				sndPlayEnded = true;
+				audioC.src = '';
+				audioE.src = '';
 				clearTimeout(sndTimeout);
 			}
 			
 		}, false);
 	});
+	var startShowFruit = function() {
+		
+	}
+	var xSound = document.getElementById('XSound');
+	var chnSound = document.getElementById('chnSound');
+	var engSound = document.getElementById('engSound');
 
+	
+
+	xSound.onclick = function(){
+		if(currPlayState[0] == 1){  // show => hide
+			chnSound.style.display = 'none';
+			engSound.style.display = 'none';
+			currPlayState[0] = 0;
+			this.classList.remove('active');
+		}else{
+			currPlayState[0] = 1;
+			chnSound.style.display = 'block';
+			engSound.style.display = 'block';
+			this.classList.add('active');
+		}
+	}
+
+	chnSound.onclick = function() {
+		if(currPlayState[1] == 1){
+			currPlayState[1] = 0;	
+			this.classList.remove('active');
+		}else{
+			currPlayState[1] = 1;
+			this.classList.add('active');
+
+		}
+	}
+
+	engSound.onclick = function() {
+		if(currPlayState[2] == 1){
+			currPlayState[2] = 0;
+			this.classList.remove('active');
+		}else{
+			currPlayState[2] = 1;
+			this.classList.add('active');
+			
+		}
+	}
 
 	
 	/*document.addEventListener("DOMContentLoaded", function() {*/
@@ -391,6 +453,8 @@
 		    window.addEventListener("resize", lazyload);
 		    window.addEventListener("orientationChange", lazyload);
 		}		
-	}		 
+	}	
+
+
 	
 })()
