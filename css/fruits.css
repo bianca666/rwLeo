@@ -97,3 +97,22 @@ ul{
 	background-color: #729d39;
 	color: #eee;
 }
+
+@media screen and (min-width: 576px) and (max-width: 767px){
+	.gallery{
+		width: 85%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	ul{
+		justify-content: space-around;
+	}
+}
+
+@media screen and (min-width: 768px){
+	.gallery{
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
