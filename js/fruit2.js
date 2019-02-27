@@ -164,17 +164,19 @@
 	var init = function() {   
 		/*load lis into ul*/
 		var ul = document.querySelector('.gallery ul');
-		fruits.forEach(function(ele){
+		var llNum = getLazyLoadingNum();
+
+		fruits.forEach(function(ele, index){
 			var li = document.createElement('li');
 			li.setAttribute('data-name', ele.name);
 			li.setAttribute('data-src', ele.src);
-			
 
-			if(ele.class && ele.class == 'lazy'){
-				li.classList.add('lazy');
-			}else{
+			if(index < llNum){
 				li.style.backgroundImage = 'url(' + ele.src + ')';
+			}else{
+				li.classList.add('lazy');
 			}
+			console.log(llNum);
 			ul.appendChild(li);	
 		});
 
@@ -195,6 +197,22 @@
 		}
 	}
 	init();
+
+	function getLazyLoadingNum(){
+		var ua = navigator.userAgent;
+		var lazyLoading;
+		switch (ua) {
+			case 'iPhone':
+				lazyLoading = 6;
+				break;
+			case 'iPad':
+				lazyloading = 20;
+				break;
+			default:
+				lazyLoading = 30;
+		}
+		return lazyLoading;
+	}
 
 	function playAudio(audio) {
 		var promise = audio.play();
