@@ -1,4 +1,4 @@
-@import url('https://fonts.font.im/css?family=Hammersmith+One');
+/* @import url('https://fonts.font.im/css?family=Hammersmith+One'); */
 html, body, *{
 	margin: 0;
 	padding: 0;
@@ -75,7 +75,7 @@ nav a.current{
 	color: #666;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 576px){
 	#menu-icon{
 		display: inline-block;
 	}
