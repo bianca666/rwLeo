@@ -160,7 +160,7 @@
 			'class': 'lazy'
 		}
 	];
-
+	var audioC, audioE;
 	var init = function() {   
 		/*load lis into ul*/
 		var ul = document.querySelector('.gallery ul');
@@ -184,8 +184,8 @@
 			var fixAudio = function(){
 				if(!isAudio){
 					isAudio = true;
-					window.audioC = new Audio();
-					window.audioE = new Audio();
+					audioC = new Audio();
+					audioE = new Audio();
 					document.removeEventListener('touchstart', fixAudio, false);  
 				}
 			};
@@ -194,6 +194,7 @@
 
 		}
 	}
+	init();
 
 	function playAudio(audio) {
 		var promise = audio.play();
@@ -204,19 +205,19 @@
 
 			});
 		}
-	}
-	
-	init();
+	}		
+
 	var currPlayState = [1, 1, 1];
 	var lis = document.querySelectorAll('.gallery li');
 	var areas = document.querySelectorAll('#nameArea span');
 	var sndPlayEnded = true;
 	var timeout = 4300;
-	var startEvent = ('ontouchstart' in window) ? 'touchstart' : 'click';
+	
 
 	lis.forEach(function(ele){
+		
 		ele.addEventListener('click', function(){
-
+		
 			if(!sndPlayEnded){
 				return;
 			}
@@ -262,9 +263,7 @@
 					esrc = 'http://media.shanbay.com/audio/us/'+ename+'.mp3';
 			}
 
-			if(window.audioC){
-				audioC = window.audioC;
-				audioE = window.audioE;
+			if(audioC){
 				audioC.src = 'sound/'+ cname +'.mp3';
 				/*'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text='+cname;*/
 
@@ -324,24 +323,6 @@
 				playAudio(audioC);	
 			}
 
-			function endBothAudios(e){
-				sndPlayEnded = true;
-				audioC.src = '';
-				audioE.src = '';
-				clearTimeout(sndTimeout);
-				e.target.removeEventListener('ended', endBothAudios);
-			}
-
-			var sndTimeout = setTimeout(function(){
-				if(!sndPlayEnded){
-					sndPlayEnded = true;
-					audioC.src = '';
-					audioE.src = '';
-					clearTimeout(sndTimeout);
-					console.log('timeout');
-				}
-			}, timeout);
-
 			function playESnd() {
 				audioE.addEventListener('ended', remListners);
 				playAudio(audioE);
@@ -350,22 +331,39 @@
 			function remListners() {
 				audioC.removeEventListener('ended', playESnd);
 				audioE.removeEventListener('ended', remListners);
+				clearSource();
+			}
+
+			function endBothAudios(e){
+				clearSource();
+				e.target.removeEventListener('ended', endBothAudios);
+			}
+
+			function clearSource(){
 				sndPlayEnded = true;
 				audioC.src = '';
 				audioE.src = '';
 				clearTimeout(sndTimeout);
-			}
+			};
+			
+
+			var sndTimeout = setTimeout(function(){
+				if(!sndPlayEnded){
+					clearSource();
+					console.log('timeout');
+				}
+			}, timeout);
+
+			
 			
 		}, false);
 	});
-	var startShowFruit = function() {
-		
-	}
+
+	
+	
 	var xSound = document.getElementById('XSound');
 	var chnSound = document.getElementById('chnSound');
 	var engSound = document.getElementById('engSound');
-
-	
 
 	xSound.onclick = function(){
 		if(currPlayState[0] == 1){  // show => hide
