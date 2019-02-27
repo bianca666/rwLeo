@@ -1,5 +1,5 @@
 body{
-	font-family: 'ZCOOL KuaiLe', cursive !important;
+	font-family: sans-serif;/* 'ZCOOL KuaiLe', cursive !important; */
 }
 
 .one-fourth h3{
@@ -335,6 +335,29 @@ p{
 	background-color: #fab95b;
 }
 
+.one-fourth h3{
+	transition: all 0.5s;
+}
+
+.one-fourth:hover{
+	box-shadow: 0px 0px 5px #69779b;
+}
+
+.one-fourth:hover i{
+	text-shadow: 0px 0px 3px ;
+}
+
+.one-fourth:hover h3{
+	text-shadow: 0px 0px 3px #fff;
+	color: #fff;
+}
+
+.one-fourth a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
 #season{
 	background-color: #ceddef;
 }
@@ -367,10 +390,6 @@ footer p i{
 		flex-wrap: wrap;
 	}
 
-	.banner-inner{
-		transform: scale(0.8);
-	}
-
 	.container{
 		width: 60%;
 	}
@@ -382,6 +401,7 @@ footer p i{
 
 	.one-fourth i {
     	font-size: 300%;
+    	display: inline-block;   
 	}
 
 	.one-fourth h3{
@@ -463,5 +483,9 @@ footer p i{
 	.section-season{
 	    display: flex;
 		flex-direction: column;
+	}
+
+	.banner-inner{
+		transform: scale(0.8);
 	}
 }
