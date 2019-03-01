@@ -3,6 +3,19 @@
 		this.div = document.getElementsByClassName("banner-inner")[0];
 		this.div.style.visibility = 'hidden';
 
+		function updateOrientation(){
+			var orientation = window.orientation;
+			switch(orientation) {
+				case 90:
+				case -90:
+					/*orientation = 'landscape';*/
+					document.getElementsByClassName('banner')[0].classList.add('landscape');
+					break
+			}
+		}
+
+		updateOrientation();
+
 		function addPart(con, src, xPos, yPos, width, height, id){
 			var part = document.createElement("div");
 			part.style.width = width + 'px';
