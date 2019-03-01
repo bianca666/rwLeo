@@ -71,7 +71,7 @@ nav a:hover{
 	color: #666;
 }
 
-nav a.current{
+nav li.current a{
 	color: #666;
 }
 
