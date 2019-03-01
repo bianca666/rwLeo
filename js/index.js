@@ -104,6 +104,10 @@
 		}
 
 		this.myBody = function(){
+
+			document.querySelectorAll('header ul li').forEach((li)=>{li.classList.remove('current')});
+			document.querySelectorAll('header ul li')[3].classList.add('current');
+
 			var clientWidth = document.body.clientWidth || document.documentElement.clientWidth;
 			var isMobile = ('ontouchstart' in window);
 			
