@@ -47,6 +47,24 @@ p{
 	color: #F0F0F0;
 }
 
+svg{
+	position: relative;
+	width: 593px;
+	height: 478px;
+	left: 50%;
+	top: 50%;
+	margin-left: -263px;
+	margin-top: -239px;
+}
+
+svg #names, svg #names-m{
+	transition: opacity 0.5s 2s;
+}
+
+#dirLines, #dirLines-m{
+	display: none;
+}
+
 #headBase{
 	opacity: 0;
 }
@@ -193,8 +211,64 @@ p{
 	transition: all 0.5s;
 }
 
+#rHand{
+	transform-origin: 11px 7px;
+}
+
+#lHand{
+	transform-origin: 7px 5px;
+}
+
+#rArm{
+	transform-origin: 4px 4px;
+}
+
+#rForeArm{
+	transform-origin: 5px 4px;
+}
+
+#lArm{
+	transform-origin: 9px 4px;
+}
+
+#lForeArm{
+	transform-origin: 5px 5px;
+}
+
+#lThigh{
+	transform-origin: 5px 4px;
+}
+
+#lCalf{
+	transform-origin: 5px 6px;
+}
+
+#rThigh{
+	transform-origin: 4px 4px;
+}
+
+#rCalf{
+	transform-origin: 5px 5px;
+}
+
+#rSleeve{
+	transform: rotateY(180deg);
+}
+
+#lSleeve{
+	transform-origin: 8px 2px;
+}
+
+#rSleeve{
+	transform-origin: 4px 2px;
+}
+
 #hips, #torso{
 	transition: all 0.2s;
+}
+
+section.one-fourth{
+	cursor: pointer;
 }
 
 .clearfix::after, .clearfix::before{
@@ -383,6 +457,48 @@ footer p i{
 	font-size: 60%;
 }
 
+#orange, #watermelon2, #strawberry2, #strawberry3, #grape, #dragonfruit{
+	transition: all 3s;
+}
+
+#orange2, #watermelon, #strawberry, #banana, #dragonfruit2{
+	transition: all 4s;
+}
+
+#orange div, #orange2 div, #watermelon div, #watermelon2 div, #strawberry div, #strawberry2 div, #strawberry3 div, #grape div, #dragonfruit div, #dragonfruit2 div, #banana div{
+	background-size: contain;
+}
+
+/* #strawberry.moveAway, #strawberry2.moveAway, #strawberry3.moveAway, #dragonfruit.moveAway, #dragonfruit2.moveAway, #banana.moveAway, #grape.moveAway{
+	transform: translateX(-50rem);
+}
+
+#watermelon.moveAway, #watermelon2.moveAway, #orange.moveAway, #orange2.moveAway{
+	transform: translateX(50rem);
+} */
+
+#orange.moveAway div, #orange2.moveAway div, #watermelon.moveAway div, #watermelon2.moveAway div{
+	animation: selfSpin 1.2s 3;
+	animation-timing-function: linear;
+}
+
+#strawberry.moveAway div, #strawberry2.moveAway div, #strawberry3.moveAway div, #dragonfruit.moveAway div, #dragonfruit2.moveAway div, #banana.moveAway div, #grape.moveAway div{
+	animation: selfRSpin 1.2s 3;
+	animation-timing-function: linear;
+}
+
+@keyframes selfSpin{
+	to{
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes selfRSpin{
+	to{
+		transform: rotate(-360deg);
+	}
+}
+
 @media screen and (max-width: 768px){
 	.flex-bet{
 		display: flex;
@@ -487,5 +603,10 @@ footer p i{
 
 	.banner-inner{
 		transform: scale(0.8);
+	}
+
+	svg{
+		margin-left: -184px;
+		width: 468px;
 	}
 }
