@@ -502,6 +502,22 @@
 
 		}
 
+		this.updateOrientation = function(){
+			var orientation = window.orientation;
+			switch(orientation) {
+				case 90:
+				case -90:
+					/*orientation = 'landscape';*/
+					document.getElementsByClassName('banner')[0].classList.add('landscape');
+					break;
+				default:
+					/*orientation = 'protrait';*/
+					document.getElementsByClassName('banner')[0].classList.remove('landscape');
+					break;
+			}
+
+		}
+
 		this.init = function(){
 			this.placeFruits();
 			this.initParts();
@@ -572,6 +588,9 @@
 			document.querySelectorAll('header ul li')[3].onclick = () => {
 				this.myBody();
 			};
+
+			this.updateOrientation();
+			window.addEventListener('orientationChange', this.updateOrientation);
 			
 		}
 	}
