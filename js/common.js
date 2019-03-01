@@ -2,10 +2,10 @@
 	window.addEventListener('load', () => {
 		var menuIcon = document.querySelector('#menu-icon');
 
-		window.addEventListener('orientationChange', () => {
+		window.addEventListener('orientationchange', () => {
 			console.log('change');
-			window.location.href=window.location.href;
-			window.location.reload(location.href);
+			
+			window.location.reload();
 		});
 
 		menuIcon.addEventListener('click', function(){
