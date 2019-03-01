@@ -586,6 +586,13 @@ footer p i{
 
 }
 
+@media screen and (max-width: 767px) {
+	.banner.landscape{
+		padding-top: 40px;
+		height: 478px;
+	}
+}
+
 @media screen and (max-width: 576px){
 	.one-fourth{
 		width: 100%;
