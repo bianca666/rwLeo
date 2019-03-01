@@ -10,7 +10,9 @@
 			part.style.position = "absolute";
 			part.style.left = xPos + 'px';
 			part.style.top = yPos + 'px';
-			part.style.backgroundImage = 'url(' + src + ')';
+			if(src){
+				part.style.backgroundImage = 'url(' + src + ')';
+			}	
 
 			if(id){
 				part.setAttribute("id", id);
@@ -18,6 +20,171 @@
 			con.appendChild(part);
 			return part;
 		};
+
+		function showParts(e) {
+			var p = e.target.parentNode;
+			if(p.nodeName !== 'g'){
+				p = p.parentNode;
+			}
+			p.querySelector('rect').style.fill = '#b1bed5';
+			p.querySelector('rect').setAttribute('stroke', '');
+			p.style.cursor = 'hand';
+			p.querySelectorAll('text').forEach(function(text){
+				text.style.fill = '#fff';
+			});
+			var parts = p.querySelector('rect').getAttribute('data-parts').split(',');
+
+			parts.forEach(function(part){
+				var p = document.getElementById(part);
+				p.classList.add('partShow');
+			})
+		}
+
+		function hideParts(e) {
+			
+			var p = e.target.parentNode;
+			if(p.nodeName !== 'g'){
+				p = p.parentNode;
+			}
+			p.style.cursor = '';
+
+			if(!('ontouchstart' in window) && (e.type == 'mouseout') && p.classList.contains('clickShow')){
+				return;
+			}
+
+			p.querySelector('rect').style.fill = 'transparent';
+			p.querySelector('rect').setAttribute('stroke', '#666');
+			var texts = p.querySelectorAll('text');
+			texts.forEach(function(text){
+				text.style.fill = '#63686e';
+			});
+
+			var parts = p.querySelector('rect').getAttribute('data-parts').split(',');				
+
+			parts.forEach(function(part){
+				var p = document.getElementById(part);
+				p.classList.remove('partShow');
+			}); 
+		}
+
+		function clickShowParts(e) {
+			/*if(clickShowTimeout){
+				clearTimeout(clickShowTimeout);
+			}*/
+			var svg = document.getElementsByTagName("svg")[0];
+			var gs = svg.querySelectorAll('g');
+			gs.forEach(function(g){
+				if(g.classList.contains('clickShow')){
+					g.style.cursor = '';
+					g.querySelector('rect').style.fill = 'transparent';
+					g.querySelector('rect').setAttribute('stroke', '#666');
+					var texts = g.querySelectorAll('text');
+					texts.forEach(function(text){
+						text.style.fill = '#63686e';
+					});
+					var parts = g.querySelector('rect').getAttribute('data-parts').split(',');	
+					parts.forEach(function(part){
+						var g = document.getElementById(part);
+						g.classList.remove('partShow');
+					}); 
+				}
+			})
+
+			var p = e.target.parentNode;
+			if(p.nodeName !== 'g'){
+				p = p.parentNode;
+			}
+			p.classList.add('clickShow');
+
+			showParts(e);
+			setTimeout(() => {
+				hideParts(e);
+				p.classList.remove('clickShow');
+			}, 3000);
+		}
+
+		this.myBody = function(){
+			var clientWidth = document.body.clientWidth || document.documentElement.clientWidth;
+			var isMobile = ('ontouchstart' in window);
+			
+			setTimeout(() => {
+				this.moveAwayFruits();
+				
+				setTimeout( () => {
+					this.figure.limbs.lArm.style.transform = 'rotate(80deg)';
+					this.figure.limbs.rArm.style.transform = 'rotate(-80deg)';
+					this.figure.clothes.lSleeve.style.opacity = 0;
+					this.figure.clothes.rSleeve.style.opacity = 0;
+					this.figure.clothes.shirt.style.opacity = 0;
+					this.figure.clothes.lShoe.style.opacity = 0;
+					this.figure.clothes.rShoe.style.opacity = 0;
+					this.figure.limbs.lFoot.style.opacity = 1;
+					this.figure.limbs.rFoot.style.opacity = 1;
+
+					
+					if(clientWidth <= 576){
+						document.getElementById('names-m').style.display = 'block';
+						document.getElementById('names-m').style.opacity = 1;
+						document.getElementById('names').style.display = 'none';
+						document.getElementById('dirLines-m').style.display = "block";
+						path.animate('dirLines-m');
+					}else{
+						document.getElementById('names').style.display = 'block';
+						document.getElementById('names-m').style.display = 'none';
+						document.getElementById('names').style.opacity = 1;
+						document.getElementById('dirLines').style.display = 'block';
+						path.animate('dirLines');	
+					}
+					
+
+					var ngs = document.getElementsByClassName('ng');
+					for(var i=0; i<ngs.length; i++){
+						if(isMobile){
+							ngs[i].addEventListener('click', clickShowParts, false);
+						}else{
+							ngs[i].addEventListener('mouseover', showParts, false);
+							ngs[i].addEventListener('mouseout', hideParts, false);
+							ngs[i].addEventListener('click', clickShowParts, false);
+						}
+						
+						
+						/*ngs[i].onmouseover = function() {
+							this.querySelector('rect').style.fill = '#F67282';
+							this.querySelector('rect').setAttribute('stroke', '');
+							this.style.cursor = 'hand';
+							this.querySelectorAll('text').forEach(function(text){
+								text.style.fill = '#fff';
+							});
+							var parts = this.querySelector('rect').getAttribute('data-parts').split(',');
+
+							parts.forEach(function(part){
+								var p = document.getElementById(part);
+								console.log(part);
+								p.classList.add('partShow');
+							})
+						};*/
+
+						/*ngs[i].onmouseout = function() {
+							this.style.cursor = '';
+							this.querySelector('rect').style.fill = 'transparent';
+							this.querySelector('rect').setAttribute('stroke', '#666');
+							var texts = this.querySelectorAll('text');
+							texts.forEach(function(text){
+								text.style.fill = '#63686e';
+							});
+
+							var parts = this.querySelector('rect').getAttribute('data-parts').split(',');				
+
+							parts.forEach(function(part){
+								var p = document.getElementById(part);
+								p.classList.remove('partShow');
+							}); 	
+						}		*/	
+					}
+
+				}, 2000);
+			}, 1000)
+		}
 
 		this.initParts = function(){
 			var container = this.div;
@@ -28,7 +195,7 @@
 			addPart(container, "imgs/z_03.png", 352, 39, 48, 47, "z2");
 			addPart(container, "imgs/z_03.png", 377, 24, 48, 47, "z3");*/
 	
-			var hips = addPart(container, "imgs/hips_03.png", 183, 347, 45, 17, 'hips');
+			var hips = addPart(container, "imgs/hips_03.png", 184, 347, 45, 17, 'hips');
 
 			var torso = addPart(container, "imgs/torso_03.png", 183, 257, 43, 94, 'torso');
 			
@@ -120,6 +287,61 @@
 			}
 		}
 
+		var path = {
+			init: function(){
+				var targets = document.getElementsByClassName('showUp');
+
+				for(var i=0; i<targets.length; i++){
+					var ele = targets[i];
+					
+					var delay, i, len, length, path, previousStrokeLength, speed;
+					var paths = [];
+					ele.querySelectorAll('line').forEach(function(line){
+						paths.push(line);
+					});
+					ele.querySelectorAll('polyline').forEach(function(pLine){
+						paths.push(pLine);
+					});
+					delay = 0;
+					for(j=0; j<paths.length; j++){
+						path = paths[j];
+						length = path.getTotalLength();
+						previousStrokeLength = speed || 0;
+						speed = length < 100 ? 20 : Math.floor(length);
+						delay += previousStrokeLength + 100;
+						path.style.transition = '';
+						path.setAttribute('data-length', length);
+						path.setAttribute('data-delay', delay);
+						path.setAttribute('data-speed', speed);
+						path.setAttribute('stroke-dashoffset', length);
+						path.setAttribute('stroke-dasharray', length+','+length);
+					}
+				}
+			},
+			animate: function(id){
+				var target = document.getElementById(id);
+				
+				var delay, i, len, length, path, paths, speed;
+				lines = target.querySelectorAll('line');
+				polylines = target.querySelectorAll('polyline');
+
+				lines.forEach(function(path){
+					length = path.dataset.length;
+					speed = path.dataset.speed;
+					delay = path.dataset.delay;
+					path.style.transition = 'stroke-dashoffset ' + speed + 'ms ' + delay + 'ms linear';
+					path.setAttribute('stroke-dashoffset', 0);
+				})	
+				polylines.forEach(function(path){
+					length = path.dataset.length;
+					speed = path.dataset.speed;
+					delay = path.dataset.delay;
+					path.style.transition = 'stroke-dashoffset ' + speed + 'ms ' + delay + 'ms linear';
+					path.setAttribute('stroke-dashoffset', 0);
+				})	 
+			}
+		}
+
 		this.blink = function(){
 			var leye = this.figure['lEye'];
 			var reye = this.figure['rEye'];
@@ -170,29 +392,47 @@
 		}
 
 		this.placeFruits = function(){
-			var watermelon = addPart(this.div, "imgs/watermelon.png", 200, 316, 130, 130, "watermelon");
-			var watermelon2 = addPart(this.div, "imgs/watermelon2.png", 240, 366, 80, 80, "watermelon2");
+			var watermelon = addPart(this.div, null, 200, 316, 130, 130, "watermelon");
+			addPart(watermelon, "imgs/watermelon.png", 0, 0, 130, 130);
+			var watermelon2 = addPart(this.div, null, 240, 366, 80, 80, "watermelon2");
+			addPart(watermelon2, "imgs/watermelon2.png", 0, 0, 80, 80);
+
 			watermelon.style.zIndex = 0;
-			var orange = addPart(this.div, "imgs/orange.png", 330, 396, 50, 50, "orange");
-			var orange2 = addPart(this.div, "imgs/orange2.png", 305, 406, 40, 40, "orange2");
-			var dragonfruit = addPart(this.div, "imgs/dragon.png", 125, 366, 80, 80, "dragonfruit");
-			var dragonfruit2 = addPart(this.div, "imgs/dragon2.png", 145, 406, 40, 40, "dragonfruit2");
-			var banana = addPart(this.div, "imgs/banana.png", 70, 376, 70, 70, "banana");
+			var orange = addPart(this.div, null, 330, 396, 50, 50, "orange");
+			addPart(orange, "imgs/orange.png", 0, 0, 50, 50);
+			var orange2 = addPart(this.div, null, 305, 406, 40, 40, "orange2");
+			addPart(orange2, "imgs/orange2.png", 0, 0, 40, 40);
+			var dragonfruit = addPart(this.div, null, 125, 366, 80, 80, "dragonfruit");
+			addPart(dragonfruit, "imgs/dragon.png", 0, 0, 80, 80);
+			var dragonfruit2 = addPart(this.div, null, 145, 406, 40, 40, "dragonfruit2");		
+			addPart(dragonfruit2, "imgs/dragon2.png", 0, 0, 40, 40);
+			var banana = addPart(this.div, null, 70, 376, 70, 70, "banana");
+			addPart(banana, "imgs/banana.png", 0, 0, 70, 70);
 			banana.style.transform = 'rotateZ(30deg)';
-			var strawberry = addPart(this.div, "imgs/strawberry.png", 75, 406, 40, 40, "strawberry");
-			var strawberry2 = addPart(this.div, "imgs/strawberry.png", 110, 416, 30, 30, "strawberry2");
-			var strawberry3 = addPart(this.div, "imgs/strawberry.png", 45, 426, 20, 20, "strawberry3");
+
+			var strawberry = addPart(this.div, null, 75, 406, 40, 40, "strawberry");
+			addPart(strawberry, "imgs/strawberry.png", 0, 0, 40, 40);
+
+			var strawberry2 = addPart(this.div, null, 110, 416, 30, 30, "strawberry2");
+			addPart(strawberry2, "imgs/strawberry.png", 0, 0, 30, 30);
+
+			var strawberry3 = addPart(this.div, null, 45, 426, 20, 20, "strawberry3");
+			addPart(strawberry3, "imgs/strawberry.png", 0, 0, 20, 20);
+
 			strawberry3.style.transform = 'rotateY(180deg)';
 
-			var grape = addPart(this.div, "imgs/grape.png", 170, 386, 60, 60, "grape"); 
-			this.fruits = [orange, orange2, strawberry, strawberry2, strawberry3, watermelon, watermelon2, grape, dragonfruit, dragonfruit2, banana].forEach((ele) => {
-				ele.style.backgroundSize = 'contain';
-				ele.style.backgroundRepeat = 'no-repeat';
+			var grape = addPart(this.div, null, 170, 386, 60, 60, "grape"); 
+			addPart(grape, "imgs/grape.png", 0, 0, 60, 60); 
+			this.fruits = [orange, orange2, strawberry, strawberry2, strawberry3, watermelon, watermelon2, grape, dragonfruit, dragonfruit2, banana];
+			this.fruits.forEach((ele) => {
+					var div = ele.querySelector('div');
+					div.style.backgroundSize = 'contain';
+					div.style.backgroundRepeat = 'no-repeat';
 			})
 			
 		}
 
-		this.moveAwayAnim = function(){
+		this.moveAwayFigure = function(){
 
 			this.figure.limbs.rThigh.style.transition = 'all 0.3s';
 			this.figure.limbs.rCalf.style.transition = 'all 0.3s';
@@ -230,6 +470,34 @@
 
 		}
 
+		this.moveAwayFruits = function(){
+			this.fruits[4].style.transform = '';
+			this.fruits[10].style.transform = '';
+
+			this.fruits[0].classList.add('moveAway');	//orange
+			this.fruits[1].classList.add('moveAway');	//orange2
+			this.fruits[2].classList.add('moveAway');	//strawberry
+			this.fruits[3].classList.add('moveAway');	//strawberry2
+			this.fruits[4].classList.add('moveAway');	//strawberry3
+			this.fruits[5].classList.add('moveAway');	//watermelon
+			this.fruits[6].classList.add('moveAway');   //watermelon2
+			this.fruits[7].classList.add('moveAway');   //grape
+			this.fruits[8].classList.add('moveAway');   //dragonfruit
+			this.fruits[9].classList.add('moveAway');   //dragfruit2
+			this.fruits[10].classList.add('moveAway');   //banana
+
+			[this.fruits[2], this.fruits[3], this.fruits[4], this.fruits[8], this.fruits[9], this.fruits[7], this.fruits[10]].forEach(function(fruit){
+			 	var leftDis = -(document.body.clientWidth/2 + 100) + 'px';
+			 	fruit.style.transform = 'translateX(' + leftDis +')';
+			 });
+
+			[this.fruits[0], this.fruits[1], this.fruits[5], this.fruits[6]].forEach(function(fruit){
+			 	var rightDis = (document.body.clientWidth/2 + 50) + 'px';
+			 	fruit.style.transform = 'translateX(' + rightDis +')';
+			})
+
+		}
+
 		this.init = function(){
 			this.placeFruits();
 			this.initParts();
@@ -238,8 +506,6 @@
 			window.addEventListener('load', () => {
 				this.div.style.visibility = 'visible';
 			}); 
-
-			console.log('test');
 
 			var leb  = this.figure['lEyebrow'];
 			var reb  = this.figure['rEyebrow'];
@@ -283,8 +549,26 @@
 			})
 
 			/*setTimeout(() => {
-				this.moveAwayAnim();
+				this.moveAwayFigure();
 			}, 2000);*/
+			
+			path.init();
+
+			if(window.location.hash){
+				switch (window.location.hash.substring(1)){
+					case 'bd':
+						this.myBody();
+						break;
+				}
+			}
+
+			document.querySelectorAll('section.one-fourth')[2].onclick = () => {
+				this.myBody();
+			};
+			document.querySelectorAll('header ul li')[3].onclick = () => {
+				this.myBody();
+			};
+			
 		}
 	}
 
