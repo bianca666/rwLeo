@@ -4,6 +4,8 @@
 
 		window.addEventListener('orientationchange', () => {
 			if(window.location.href.indexOf('body') != '-1'){
+				window.location.reload();	
+			}else if( (window.location.href.indexOf('index') != '-1') && (window.orientation == 90 || window.orientation == -90)){
 				window.location.reload();
 			}
 			
