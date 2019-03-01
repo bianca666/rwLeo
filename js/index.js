@@ -502,10 +502,12 @@
 
 		}
 
-		this.updateOrientation = function(e){
-			if(e){
+		this.updateOrientation = function(argu){
+			if(argu == 'change'){
+				console.log('change');
 				window.location.reload();
 			}
+			console.log('init');
 			var orientation = window.orientation;
 			switch(orientation) {
 				case 90:
@@ -592,8 +594,10 @@
 				this.myBody();
 			};
 
-			this.updateOrientation();
-			window.addEventListener('orientationChange', this.updateOrientation);
+			this.updateOrientation('init');
+			window.addEventListener('orientationChange', () => {
+				this.updateOrientation('change');
+			});
 			
 		}
 	}
