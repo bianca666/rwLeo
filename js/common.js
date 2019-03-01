@@ -10,11 +10,15 @@
 				case -90:
 					/*orientation = 'landscape';*/
 					document.getElementsByClassName('banner')[0].classList.add('landscape');
-					break
+					break;
+				default:
+					document.getElementsByClassName('banner')[0].classList.remove('landscape');
+					break;
 			}
 		}
 
 		updateOrientation();
+		window.addEventListener('orientationchange', updateOrientation);
 
 		function addPart(con, src, xPos, yPos, width, height, id){
 			var part = document.createElement("div");
