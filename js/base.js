@@ -4,7 +4,8 @@
 
 		window.addEventListener('orientationchange', () => {
 			if(window.location.href.indexOf('body')){
-				window.location.reload()
+				console.log(window.location.href);
+				window.location.reload();
 			}
 			
 		});
