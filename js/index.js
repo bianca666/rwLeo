@@ -502,7 +502,10 @@
 
 		}
 
-		this.updateOrientation = function(){
+		this.updateOrientation = function(e){
+			if(e){
+				window.location.reload();
+			}
 			var orientation = window.orientation;
 			switch(orientation) {
 				case 90:
@@ -512,7 +515,7 @@
 					break;
 				default:
 					/*orientation = 'protrait';*/
-					document.getElementsByClassName('banner')[0].classList.remove('landscape');
+					
 					break;
 			}
 
