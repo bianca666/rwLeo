@@ -3,7 +3,10 @@
 		var menuIcon = document.querySelector('#menu-icon');
 
 		window.addEventListener('orientationchange', () => {
-			window.location.reload();
+			if(window.location.href.indexOf('body')){
+				window.location.reload()
+			}
+			
 		});
 
 		menuIcon.addEventListener('click', function(){
