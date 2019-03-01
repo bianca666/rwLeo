@@ -54,6 +54,17 @@
 			}
 	}
 
+	var audioC, audioE;
+
+	if('ontouchstart' in window){
+		var fixAudio = function(){
+			audioC = new Audio();
+			audioE = new Audio();
+			document.removeEventListener('touchstart', fixAudio, false);  
+		};
+		document.addEventListener('touchstart', fixAudio, false); 
+	}
+
 	function showParts(e) {
 			var p = e.target.parentNode;
 			if(p.nodeName !== 'g'){
@@ -128,6 +139,21 @@
 			p = p.parentNode;
 		}
 		p.classList.add('clickShow');
+
+		var text = p.querySelectorAll('text')[1];
+		text = text.innerHTML.trim();
+
+		if(audioC){
+			audioC.src = 'sound/'+ text +'.mp3';
+			audioE.src = 'http://media.shanbay.com/audio/us/'+text+'.mp3';
+		}else{
+			audioC = new Audio('sound/'+ text +'.mp3');
+			audioE = new Audio('http://media.shanbay.com/audio/us/'+text+'.mp3');
+		}
+
+		audioC.play();
+	
+		audioC.addEventListener('ended', () => audioE.play());
 
 		showParts(e);
 		setTimeout(() => {
