@@ -10,14 +10,22 @@
 			}
 		});
 
-		
-		if(menuIcon.style.display !== 'none' || menuIcon.style.display !== '') {
-			var navLis = document.querySelectorAll('header ul li');
-			navLis.forEach(function(li){
-				li.addEventListener('click', () => {
-					li.parentNode.style.display = 'none';
-				}, false);
-			})
-		}
+		var navLis = document.querySelectorAll('header ul li');
+		navLis.forEach(function(li){
+			li.addEventListener('click',function(){
+				navLis.forEach(function(li){
+					li.classList.remove('current');
+				})
+
+				this.classList.add('current');
+
+				if((document.body.clientWidth||document.documentElement.clientWidth) <= 576) {
+					document.querySelector('header ul').style.display = 'none';
+				}
+			}, false);
+		})
+
+
+	
 	});
 })();
