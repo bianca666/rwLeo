@@ -199,18 +199,17 @@
 	init();
 
 	function getLazyLoadingNum(){
-		var ua = navigator.userAgent;
 		var lazyLoading;
-		switch (ua) {
-			case 'iPhone':
-				lazyLoading = 6;
-				break;
-			case 'iPad':
-				lazyloading = 20;
-				break;
-			default:
-				lazyLoading = 30;
-		}
+		var ua = navigator.userAgent.toLowerCase();
+
+		if(ua.indexOf('iphone') != -1) {
+			lazyLoading = 8;
+		}else if(ua.indexOf('ipad') != -1) {
+			lazyLoading = 20;
+		}else{
+			lazyLoading = 30;
+		};
+
 		return lazyLoading;
 	}
 
