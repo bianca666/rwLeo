@@ -9,5 +9,15 @@
 				target.style.display = 'none';
 			}
 		});
+
+		
+		if(menuIcon.style.display !== 'none' || menuIcon.style.display !== '') {
+			var navLis = document.querySelectorAll('header ul li');
+			navLis.forEach(function(li){
+				li.addEventListener('click', () => {
+					li.parentNode.style.display = 'none';
+				}, false);
+			})
+		}
 	});
 })();
