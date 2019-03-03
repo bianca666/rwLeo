@@ -1707,7 +1707,7 @@ brush	animation-timing-function: linear;
 	#ope{
 	    height: 70px;
 	    width: 280px;
-	    top: 8rem;
+	    top: 7rem;
 	    left: 50%;
 	    flex-direction: row;
 	    margin-left: -135px;
@@ -1719,7 +1719,7 @@ brush	animation-timing-function: linear;
 		position: absolute;
 		height: 70px;
 	    width: 280px;
-		top: 8rem;
+		top: 7rem;
 	    left: 50%;
 		margin-left: -135px;
 	    margin-top: 0;
