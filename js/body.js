@@ -163,12 +163,12 @@
 	}
 
 	function myBody(){
-
+		var leo = window.leo;
 		var clientWidth = document.body.clientWidth || document.documentElement.clientWidth;
 		var isMobile = ('ontouchstart' in window);
 		
 		setTimeout(() => {
-			var leo = window.leo;
+			
 			leo.moveAwayFruits();
 			
 			setTimeout( () => {
@@ -214,19 +214,10 @@
 		}, 1000)
 	}
 
-	function updateOrientation(){
-		var orientation = window.orientation;
-		switch(orientation) {
-			case 90:
-			case -90:
-				/*orientation = 'landscape';*/
-				document.getElementsByClassName('banner')[0].classList.add('landscape');
-				break
-		}
-	}
+	
 
 	path.init();
-	updateOrientation();
+	
 	myBody();
 
 })()
