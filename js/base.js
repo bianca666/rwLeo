@@ -3,9 +3,10 @@
 		var menuIcon = document.querySelector('#menu-icon');
 
 		window.addEventListener('orientationchange', () => {
-			if(window.location.href.indexOf('body') != '-1'){
+			if(window.location.href.indexOf('body') != '-1' || window.location.href.indexOf('morning') != '-1'){
 				window.location.reload();	
 			}
+			
 		});
 
 		menuIcon.addEventListener('touchstart', () => {
