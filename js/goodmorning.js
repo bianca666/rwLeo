@@ -817,7 +817,9 @@
 
 		var image = new Image();
 		image.src = 'imgs/eyes-hover.png';
-		image.onload = () => {};
+		image.onload = () => {
+			image.src = 'imgs/btMouth.png';
+		};
 
 		var bodyWidth = document.body.clientWidth;
 		var bodyHeight = document.body.clientHeight;
