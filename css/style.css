@@ -69,32 +69,6 @@ svg #names, svg #names-m{
 	opacity: 0;
 }
 
-#lEye.stw{	
-	animation: blink 1.5s steps(10) 2,
-				blink 0.8s 3s steps(10) 3 forwards;
-}
-
-#rEye{
-	background-position: -374px 0;
-}
-
-#rEye.stw{
-	animation: blinkR 1.5s steps(10) 2,
-				blinkR 0.8s 3s steps(10) 3 forwards;
-}
-
-@keyframes blink{
-	to{
-		background-position: -340px 0;
-	}
-}
-
-@keyframes blinkR{
-	to{
-		background-position: -714px 0;
-	}
-}
-
 #lEye.blink{
 	animation: blinkBN 0.25s steps(10) 2 forwards;
 }
@@ -116,67 +90,70 @@ svg #names, svg #names-m{
 }
 
 #lEyebrow{
-	background-position: 0 -25px;
+	background-position: 0 0;
 	
 }
 
 .eblNormal{
-	animation: eblNormal 0.25s steps(10) /* 10.6.85s */ forwards;
+	animation: eblNormal 0.2s steps(10) /* 10.6.85s */ forwards;
 }
 
 #rEyebrow{
-	background-position: -49px -25px;
+	background-position: -49px 0;
 	
 }
 
 .ebrNormal{
-	animation: ebrNormal 0.25s steps(10) /* 10.6.85s */ forwards;
+	animation: ebrNormal 0.2s steps(10) /* 10.6.85s */ forwards;
 }
 
 @keyframes eblNormal{
 	to{
-		background-position: -980px -25px;
+		background-position: -980px 0;
 	}
 }
 
 @keyframes ebrNormal{
 	to{
-		background-position: -1029px -25px;
+		background-position: -1029px 0;
 	}
 }
 
 #mouth{
-	background-position: 0 -46px;
+	background-position: 0 0px;
 }
 
 .mouthNormal{
-	animation: mNormal 0.25s steps(10) /* 10.6.85s */ forwards;
+	animation: mNormal 0.2s steps(10) /* 10.6.85s */ forwards;
 }
 
 @keyframes mNormal{
 	to{
-		background-position: -520px -46px;
+		background-position: -520px 0px;
 	}
 }
 
-#rSleeve{
-	transform: rotateY(180deg);
+#lShoe, #rShoe{
+	opacity: 0;
 }
 
 #lSleeve{
 	transform-origin: 8px 2px;
+	opacity: 0;
 }
 
 #rSleeve{
 	transform-origin: 4px 2px;
+	transform: rotateY(180deg);
+	opacity: 0;
+}
+
+#shirt{
+	opacity: 0;
 }
 
 #rpants{
 	transform-origin: 9px 4px;
-}
-
-#lpants{
-	transform-origin: 11px 4px;
 }
 
 #hipsWithPants{
@@ -184,19 +161,15 @@ svg #names, svg #names-m{
 }
 
 #rThigh{
-	transform-origin: 4px 4px;
+	transform-origin: 6px -6px;
 }
 
 #rCalf{
 	transform-origin: 5px 5px;
 }
 
-#rpants{
-	transform-origin: 9px 4px;
-}
-
 #lThigh{
-	transform-origin: 5px 4px;
+	transform-origin: 4px -4px;
 }
 
 #lCalf{
@@ -235,32 +208,12 @@ svg #names, svg #names-m{
 	transform-origin: 5px 5px;
 }
 
-#lThigh{
-	transform-origin: 5px 4px;
-}
-
 #lCalf{
 	transform-origin: 5px 6px;
 }
 
-#rThigh{
-	transform-origin: 4px 4px;
-}
-
 #rCalf{
 	transform-origin: 5px 5px;
-}
-
-#rSleeve{
-	transform: rotateY(180deg);
-}
-
-#lSleeve{
-	transform-origin: 8px 2px;
-}
-
-#rSleeve{
-	transform-origin: 4px 2px;
 }
 
 #hips, #torso{
