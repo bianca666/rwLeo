@@ -815,6 +815,9 @@
 		leye.classList.add("stw");
 		reye.classList.add("stw");
 
+		var image = new Image();
+		image.src = 'imgs/eyes-hover.png';
+		image.onload = () => {};
 
 		var bodyWidth = document.body.clientWidth;
 		var bodyHeight = document.body.clientHeight;
