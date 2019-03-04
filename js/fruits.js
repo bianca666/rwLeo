@@ -176,7 +176,6 @@
 			}else{
 				li.classList.add('lazy');
 			}
-			console.log(llNum);
 			ul.appendChild(li);	
 		});
 
@@ -232,9 +231,8 @@
 	
 
 	lis.forEach(function(ele){
-		
 		ele.addEventListener('click', function(){
-		
+			
 			if(!sndPlayEnded){
 				return;
 			}
@@ -270,11 +268,11 @@
 				case 'cape gooseberry':
 					esrc = 'https://dictionary.cambridge.org/media/english/us_pron/c/cdo/cdo03/cdo0318uscape0757.mp3';
 					break;
-				case 'kiwi':
-					esrc = 'https://dictionary.cambridge.org/media/english/us_pron/u/usk/uskil/uskillj030.mp3';
-					break;
+				/*case 'kiwi':
+					esrc = 'http://media.shanbay.com/audio/us/kiwi.mp3';
+					break;*/
 				case 'wax apple':
-					esrc = 'sound/waxappleE.mp3';
+					esrc = 'http://media.shanbay.com/audio/us/wax_apple.mp3';
 					break;
 				default:
 					esrc = 'http://media.shanbay.com/audio/us/'+ename+'.mp3';
