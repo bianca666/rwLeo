@@ -1,5 +1,8 @@
 (function(){
-	window.addEventListener('load', () => {
+	
+	var isMobile = 'ontouchstart' in window;
+
+	window.addEventListener('DOMContentLoaded', () => {
 		var menuIcon = document.querySelector('#menu-icon');
 
 		window.addEventListener('orientationchange', () => {
@@ -10,6 +13,7 @@
 		});
 
 		menuIcon.addEventListener('touchstart', () => {
+		
 			var target = document.querySelector(menuIcon.getAttribute('data-target'));
 			if(target.style.display == '' || target.style.display == 'none'){
 				target.style.display = 'block';
@@ -18,7 +22,8 @@
 			}
 		}, false);
 
-	/*	menuIcon.addEventListener('click', function(){
+		/*menuIcon.addEventListener('click', function(){
+			console.log('click');
 			var target = document.querySelector(menuIcon.getAttribute('data-target'));
 			if(target.style.display == '' || target.style.display == 'none'){
 				target.style.display = 'block';
