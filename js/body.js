@@ -111,35 +111,35 @@
 		}); 
 	}
 
-	function clickShowParts(e) {
-		/*if(clickShowTimeout){
-			clearTimeout(clickShowTimeout);
-		}*/
-		var svg = document.getElementsByTagName("svg")[0];
-		var gs = svg.querySelectorAll('g');
-		gs.forEach(function(g){
-			if(g.classList.contains('clickShow')){
-				g.style.cursor = '';
-				g.querySelector('rect').style.fill = 'transparent';
-				g.querySelector('rect').setAttribute('stroke', '#666');
-				var texts = g.querySelectorAll('text');
-				texts.forEach(function(text){
-					text.style.fill = '#63686e';
-				});
-				var parts = g.querySelector('rect').getAttribute('data-parts').split(',');	
-				parts.forEach(function(part){
-					var g = document.getElementById(part);
-					g.classList.remove('partShow');
-				}); 
-			}
-		})
+	var clearHighlight = function(g) {
+		g.style.cursor = '';
+		g.querySelector('rect').style.fill = 'transparent';
+		g.querySelector('rect').setAttribute('stroke', '#666');
+		var texts = g.querySelectorAll('text');
+		texts.forEach(function(text){
+			text.style.fill = '#63686e';
+		});
+		var parts = g.querySelector('rect').getAttribute('data-parts').split(',');	
+		parts.forEach(function(part){
+			var pg = document.getElementById(part);
+			pg.classList.remove('partShow');
+		}); 
+	}
 
+	function clickShowParts(e) {	
+	
+		var ngs = document.querySelectorAll('.ng.clickShow');
+
+		ngs.forEach(function(ele) {
+			clearHighlight(ele);
+		})
+	
 		var p = e.target.parentNode;
 		if(p.nodeName !== 'g'){
 			p = p.parentNode;
 		}
 		p.classList.add('clickShow');
-
+		
 		var text = p.querySelectorAll('text')[1];
 		text = text.innerHTML.trim();
 
@@ -201,7 +201,7 @@
 				var ngs = document.getElementsByClassName('ng');
 				for(var i=0; i<ngs.length; i++){
 					if(isMobile){
-						ngs[i].addEventListener('click', clickShowParts, false);
+						ngs[i].addEventListener('touchstart', clickShowParts, false);/*'click'*/
 					}else{
 						ngs[i].addEventListener('mouseover', showParts, false);
 						ngs[i].addEventListener('mouseout', hideParts, false);
