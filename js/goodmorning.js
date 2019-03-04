@@ -2,6 +2,17 @@
 	var leo = window.leo;
 	var dropArea, ldis, tdis;
 	var animating = false;
+	var soundPlaying = false;
+	var soundC,soundE;
+	var isMobile = 'ontouchstart' in window;
+	if(isMobile){
+		var fixAudio = function(){
+			soundC = new Audio();
+			soundE = new Audio();
+			document.removeEventListener('touchstart', fixAudio, false);  
+		};
+		document.addEventListener('touchstart', fixAudio, false); 
+	}
 	var currDragged = {
 		item: null,
 		startPoint: null,
@@ -9,7 +20,7 @@
 		offsetX: null,
 		offsetY: null
 	};
-	var isMobile = 'ontouchstart' in window;
+	
 
 	var setBodySleep = function() {
 		var sleepState = {"lArm": 30,
@@ -201,6 +212,7 @@
 
 	var dragHandler = function(e) {
 		/*e.preventDefault();*/
+
 		var id = e.target.id; 
 
 		if(!(id == 'wfOpe'|| id == 'btOpe'||id == "ebOpe" || id=="tcOpe") ){
@@ -240,7 +252,6 @@
 	}
 
 	var getMousePoint = function(ev) {
-		var supportsTouches = 'ontouchstart' in document;
 		
 		var x = y = 0,
 			doc = document.documentElement,
@@ -253,7 +264,7 @@
 				x = (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
 				y = (doc && doc.scrollTop  || body && body.scrollTop  || 0) - (doc && doc.clientTop  || body && body.clientTop  || 0);
 			}
-			if(supportsTouches){
+			if(isMobile){
 				var evt = ev.touches.item(0);//仅支持单点触摸,第一个触摸点
 				x=evt.pageX;
 				y=evt.pageY;
@@ -599,7 +610,32 @@
 			var und = document.createElement('div');
 			und.id = 'undraggableDiv';
 			document.body.appendChild(und);
+			var greet = document.querySelector('#greeting');
+			var h3text = '';
+			var h4text = '';
+			switch (id) {
+				case 'wfOpe':
+					h3text = '洗脸';
+					h4text = 'wash face';
+					break;
+				case 'btOpe':
+					h3text = '刷牙';
+					h4text = 'brush teeth';
+					break;
+				case 'ebOpe':
+					h3text = '吃早饭';
+					h4text = 'have breakfast';
+					break;
+				case 'tcOpe':
+					h3text = '穿衣服';
+					h4text = 'get dressed';
+					break;
+
 			}
+			greet.querySelector('h3').innerHTML = h3text;
+			greet.querySelector('h4').innerHTML = h4text;
+
+		}
 	}
 
 	var getDressed = function() {
@@ -805,6 +841,94 @@
 		})
 	}
 
+	var playE = function() {
+		var promise = soundE.play();
+		if(promise !== undefined) {
+			promise.catch(error => {
+				console.log('eerror:', error);
+				soundPlaying = false;
+			}).then(() => {
+
+			});
+		}
+		soundE.addEventListener('ended', endCEListeners, false);
+	}
+
+	var endCEListeners = function() {
+		soundC.src = '';
+		soundE.src = '';
+		soundPlaying = false;
+		soundC.removeEventListener('ended', playE, false);
+		soundE.removeEventListener('ended', endCEListeners, false);
+	}
+
+	var playSound = function() {
+		if(soundPlaying) {
+			return;
+		}
+		soundPlaying = true;
+		var gh4 = document.querySelector('#greeting').querySelector('h4').innerHTML;
+		var textContent = gh4.toLowerCase();
+		
+		switch (textContent) {
+			case 'good morning':
+				if(soundC){
+					soundC.src = 'sound/goodmorning.mp3';
+					soundE.src = 'http://media.shanbay.com/audio/us/good_morning.mp3';
+				}else{
+					soundC = new Audio('sound/goodmorning.mp3');
+					soundE = new Audio('http://media.shanbay.com/audio/us/good_morning.mp3');
+				}
+				break;
+			case 'wash face':
+				if(soundC){
+					soundC.src = 'sound/washface.mp3';
+					soundE.src = 'sound/washfaceE.mp3';
+				}else{
+					soundC = new Audio('sound/washface.mp3');
+					soundE = new Audio('sound/washfaceE.mp3');
+				}
+				break;
+			case 'brush teeth':
+				if(soundC){
+					soundC.src = 'sound/brushteeth.mp3';
+					soundE.src = 'sound/brushteethE.mp3';
+				}else{
+					soundC = new Audio('sound/brushteeth.mp3');
+					soundE = new Audio('sound/brushteethE.mp3');
+				}
+				break;
+			case 'get dressed':
+				if(soundC){
+					soundC.src = 'sound/getdressed.mp3';
+					soundE.src = 'http://media.shanbay.com/audio/us/get_dressed.mp3';
+				}else{
+					soundC = new Audio('sound/getdressed.mp3');
+					soundE = new Audio('http://media.shanbay.com/audio/us/get_dressed.mp3');
+				}
+				break;
+			case 'have breakfast':
+				if(soundC){
+					soundC.src = 'sound/havebreakfast.mp3';
+					soundE.src = 'http://media.shanbay.com/audio/us/have_breakfast.mp3';
+				}else{
+					soundC = new Audio('sound/havebreakfast.mp3');
+					soundE = new Audio('http://media.shanbay.com/audio/us/have_breakfast.mp3');
+				}
+				break;
+		}
+		var promise = soundC.play();
+		if(promise !== undefined) {
+			promise.catch(error => {
+				console.log('cerror:', error);
+				soundPlaying = false;
+			}).then(() => {
+				
+			});
+		}
+		soundC.addEventListener('ended', playE, false);
+	}
+
 	var init = function() {
 		setBodySleep();
 		addParts();
@@ -851,9 +975,16 @@
 			initDropArea();
 			initDragEvents();
 
+			document.querySelector('#greeting').style.opacity = 1;
+
 		}, 6750);  /*6750*/
 
+		var sound = document.querySelector('#sound');
+		sound.addEventListener('click', playSound, false);
+		sound.addEventListener('touchstart', playSound, false);	
+
 	} // end of init
+
 	init();
 	
 	
