@@ -66,7 +66,7 @@
 	}
 
 	var initOpeItems = function() {
-		var container = document.createElement('div');
+		var container = document.getElementById('ope');
 		var opeArr = ['wfOpe', 'btOpe', 'ebOpe', 'tcOpe'];
 		opeArr.forEach((ele) => {
 			var ope = document.createElement('div');
@@ -97,8 +97,6 @@
 			}
 			container.appendChild(ope);
 		})
-		container.id = 'ope';
-		document.body.appendChild(container);
 	}
 
 	var initDropArea = function() {
@@ -315,7 +313,7 @@
 				},8000);
 				break;
 			case "ebOpe":
-				eatBreakfast();
+				haveBreakfast();
 				setTimeout(() => { 
 					animEnd();
 				},6500);
@@ -482,7 +480,7 @@
 
 	};
 
-	var eatBreakfast = function() {
+	var haveBreakfast = function() {
 		var desk, spoon, bowl;
 		var torso = leo.figure['torso'];
 		
