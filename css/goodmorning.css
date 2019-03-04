@@ -132,6 +132,10 @@ body{
 	margin-top: -132px;
 }
 
+#ope div{
+	cursor: pointer;
+}
+
 #undraggableDiv{
 	z-index: 999;
 	position: absolute;
@@ -1696,11 +1700,40 @@ brush	animation-timing-function: linear;
 	}
 }
 
-@media screen and (max-width: 812px){
-	body.landscape{
-		overflow: inherit;
-	}
+#greeting{
+	position: absolute;
+	width: 9rem;
+	height: 4rem;
+	top: 3rem;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	opacity: 0;
+}
 
+#greeting h3{
+	font-size: 2rem;
+	text-align: center;
+	margin-left: 0;
+}
+
+#greeting h4{
+	font-size: 1rem;
+	text-align: center;
+	position: relative;
+	display: inline-block;
+}
+
+#greeting i{
+	position: absolute;
+	right: -2.5rem;
+	top: 1.5rem;
+	font-size: 1.5rem;
+}
+
+#sound{
+	color: pink;
+	cursor: pointer;
 }
 
 @media screen and (max-width: 576px){
@@ -1724,5 +1757,26 @@ brush	animation-timing-function: linear;
 		margin-left: -135px;
 	    margin-top: 0;
 	}
+
+}
+
+@media screen and (max-width: 812px){
+	body.landscape{
+		overflow: inherit;
+	}
+
+	body.landscape #greeting{
+		top: 50%;
+    	left: 1rem;
+    	transform: translateY(-50%);
+    }
+
+    body.landscape #greeting i{
+    	left: 50%;
+    	top: auto;
+    	bottom: 2.5rem;
+    	transform: translate(-50%, 350%);
+
+    }
 
 }
