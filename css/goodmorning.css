@@ -1704,9 +1704,9 @@ brush	animation-timing-function: linear;
 	position: absolute;
 	width: 9rem;
 	height: 4rem;
-	top: 3rem;
-	left: 50%;
-	transform: translateX(-50%);
+	top: 50%;
+	left: 1rem;
+	transform: translateY(-50%);
 	text-align: center;
 	opacity: 0;
 }
@@ -1726,14 +1726,47 @@ brush	animation-timing-function: linear;
 
 #greeting i{
 	position: absolute;
-	right: -2.5rem;
-	top: 1.5rem;
 	font-size: 1.5rem;
+	left: 50%;
+	top: auto;
+	bottom: 2.5rem;
+	transform: translate(-50%, 350%);
 }
 
 #sound{
 	color: pink;
 	cursor: pointer;
+}
+
+main{
+	position: relative;
+	width: 70%;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 812px){
+	body.landscape{
+		overflow: inherit;
+	}
+
+	main{
+		width: 520px;
+	}
+
+	/* body.landscape #greeting{
+		top: 50%;
+	    	left: 1rem;
+	    	transform: translateY(-50%);
+	    }
+	
+	    body.landscape #greeting i{
+	    	left: 50%;
+	    	top: auto;
+	    	bottom: 2.5rem;
+	    	transform: translate(-50%, 350%);
+	
+	    } */
+
 }
 
 @media screen and (max-width: 576px){
@@ -1758,25 +1791,21 @@ brush	animation-timing-function: linear;
 	    margin-top: 0;
 	}
 
-}
-
-@media screen and (max-width: 812px){
-	body.landscape{
-		overflow: inherit;
+	main{
+		width: 100%;
 	}
 
-	body.landscape #greeting{
-		top: 50%;
-    	left: 1rem;
-    	transform: translateY(-50%);
-    }
+	#greeting{
+		top: 3rem;
+		left: 50%;
+		transform: translateX(-50%);
+	}
 
-    body.landscape #greeting i{
-    	left: 50%;
-    	top: auto;
-    	bottom: 2.5rem;
-    	transform: translate(-50%, 350%);
+	#greeting i{
+		right: -2.5rem;
+		top: 1.5rem;
+		left: auto;
+	}
 
-    }
 
 }
