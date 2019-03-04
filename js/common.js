@@ -188,7 +188,7 @@
 				}else{
 					w = document.documentElement.clientWidth;
 				}
-				console.log(w);
+
 				this.figure.hips.style.left = w + 'px';
 				this.figure.torso.style.left = w + 'px';
 				this.figure.limbs.rThigh.style.transition = 'all 0.5s';
@@ -276,10 +276,6 @@
 			}else if(window.location.href.indexOf('goodmorning') != '-1'){
 				this.initParts();
 			}
-			
-			window.addEventListener('load', () => {
-				this.div.style.visibility = 'visible';
-			}); 
 
 			var leb  = this.figure['lEyebrow'];
 			var reb  = this.figure['rEyebrow'];
@@ -323,19 +319,25 @@
 				}		
 			})
 
-			/*setTimeout(() => {
-				this.moveAwayFigure();
-			}, 2000);*/
-			
-
-			
-
-			
 		}
 	}
 
 
-
+		document.addEventListener('DOMContentLoaded', () => {
+			var num = 0;
+			var images = ['imgs/hips_03.png', 'imgs/rThigh_03.png', 'imgs/rCalf_03.png', 'imgs/rpants_03.png', 'imgs/lThigh_03.png', 'imgs/torso_03.png', 'imgs/sink_03.png', 'imgs/rFoot_03.png', 'imgs/rShoe_03.png', 'imgs/lCalf_03.png', 'imgs/lpants_03.png', 'imgs/lFoot_03.png', 'imgs/lShoe_03.png', 'imgs/neck_03.png', 'imgs/vest_03.png', 'imgs/torsoShirt_03.png', 'imgs/sArm_03.png', 'imgs/srArm_03.png', 'imgs/lSleeve_03.png', 'imgs/lforeArm_03.png', 'imgs/lHand_03.png', 'imgs/lSleeve_03.png', 'imgs/rforeArm_03.png', 'imgs/rHand_03.png', 'imgs/face_03.png', 'imgs/lEar_03.png', 'imgs/lEar_03.png', 'imgs/hairBase_03.png', 'imgs/hairs_03.png', 'imgs/hairs_03.png', 'imgs/eyebrow-stw.png', 'imgs/eb-hover.png', 'imgs/mouth-hover.png'];	
+				
+				images.forEach(function(image) {
+					var img = new Image();
+					img.src = image;
+					img.onload = () => {
+						num++;
+						if(num == images.length){
+							document.getElementsByClassName("banner-inner")[0].style.visibility = 'visible';
+						}
+					}
+				})	
+		}); 
 	
 
 	
