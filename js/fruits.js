@@ -266,16 +266,16 @@
 			var esrc;
 			switch(ename) {
 				case 'cape gooseberry':
-					esrc = 'https://dictionary.cambridge.org/media/english/us_pron/c/cdo/cdo03/cdo0318uscape0757.mp3';
+					esrc = 'sound/capegooseberryE.mp3';
 					break;
 				/*case 'kiwi':
 					esrc = 'http://media.shanbay.com/audio/us/kiwi.mp3';
 					break;*/
 				case 'wax apple':
-					esrc = 'https://media.shanbay.com/audio/us/wax_apple.mp3';
+					esrc = 'sound/wax_appleE.mp3';
 					break;
 				default:
-					esrc = 'https://media.shanbay.com/audio/us/'+ename+'.mp3';
+					esrc = 'sound/'+ename+'E.mp3';
 			}
 
 			if(audioC){
