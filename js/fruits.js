@@ -272,10 +272,10 @@
 					esrc = 'http://media.shanbay.com/audio/us/kiwi.mp3';
 					break;*/
 				case 'wax apple':
-					esrc = 'http://media.shanbay.com/audio/us/wax_apple.mp3';
+					esrc = 'https://media.shanbay.com/audio/us/wax_apple.mp3';
 					break;
 				default:
-					esrc = 'http://media.shanbay.com/audio/us/'+ename+'.mp3';
+					esrc = 'https://media.shanbay.com/audio/us/'+ename+'.mp3';
 			}
 
 			if(audioC){
