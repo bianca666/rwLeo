@@ -145,10 +145,10 @@
 
 		if(audioC){
 			audioC.src = 'sound/'+ text +'.mp3';
-			audioE.src = 'https://media.shanbay.com/audio/us/'+text+'.mp3';
+			audioE.src = 'sound/'+text+'E.mp3';
 		}else{
 			audioC = new Audio('sound/'+ text +'.mp3');
-			audioE = new Audio('https://media.shanbay.com/audio/us/'+text+'.mp3');
+			audioE = new Audio('sound/'+text+'E.mp3');
 		}
 
 		audioC.play();
