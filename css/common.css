@@ -39,7 +39,8 @@ header{
 	height: 25px;
 	background: url("../imgs/menu-icon.png") no-repeat center;
 	background-size: contain;
-	margin-right: 5px;
+	margin-right: 10px;
+	margin-top: 5px;
 	
 }
 
@@ -83,15 +84,15 @@ nav li.current a{
 	nav ul{
 		display: none;
 		position: absolute;
-		right: 10px;
+		right: 0px;
 		top: 40px;
-		width: 15%;
-		/* border: 1px solid #ccc; */
+		width: 3rem;
+		background: rgba(0, 0, 0, 0.05);
 		text-align: center;
 	}
 
 	nav ul li{
-		text-align: right;
+		text-align: center;
 		width: 100%;
 		padding: 10px 0;
 	}
