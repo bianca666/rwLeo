@@ -872,10 +872,10 @@
 			case 'good morning':
 				if(soundC){
 					soundC.src = 'sound/goodmorning.mp3';
-					soundE.src = 'http://media.shanbay.com/audio/us/good_morning.mp3';
+					soundE.src = 'https://media.shanbay.com/audio/us/good_morning.mp3';
 				}else{
 					soundC = new Audio('sound/goodmorning.mp3');
-					soundE = new Audio('http://media.shanbay.com/audio/us/good_morning.mp3');
+					soundE = new Audio('https://media.shanbay.com/audio/us/good_morning.mp3');
 				}
 				break;
 			case 'wash face':
@@ -899,19 +899,19 @@
 			case 'get dressed':
 				if(soundC){
 					soundC.src = 'sound/getdressed.mp3';
-					soundE.src = 'http://media.shanbay.com/audio/us/get_dressed.mp3';
+					soundE.src = 'https://media.shanbay.com/audio/us/get_dressed.mp3';
 				}else{
 					soundC = new Audio('sound/getdressed.mp3');
-					soundE = new Audio('http://media.shanbay.com/audio/us/get_dressed.mp3');
+					soundE = new Audio('https://media.shanbay.com/audio/us/get_dressed.mp3');
 				}
 				break;
 			case 'have breakfast':
 				if(soundC){
 					soundC.src = 'sound/havebreakfast.mp3';
-					soundE.src = 'http://media.shanbay.com/audio/us/have_breakfast.mp3';
+					soundE.src = 'https://media.shanbay.com/audio/us/have_breakfast.mp3';
 				}else{
 					soundC = new Audio('sound/havebreakfast.mp3');
-					soundE = new Audio('http://media.shanbay.com/audio/us/have_breakfast.mp3');
+					soundE = new Audio('https://media.shanbay.com/audio/us/have_breakfast.mp3');
 				}
 				break;
 		}
