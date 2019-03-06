@@ -861,10 +861,10 @@
 	}
 
 	var playSound = function() {
-		if(soundPlaying) {
+/*		if(soundPlaying) {
 			return;
 		}
-		soundPlaying = true;
+		soundPlaying = true;*/
 		var gh4 = document.querySelector('#greeting').querySelector('h4').innerHTML;
 		var textContent = gh4.toLowerCase();
 		
