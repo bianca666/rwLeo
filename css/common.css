@@ -35,11 +35,12 @@ header{
 
 #menu-icon{
 	display: none;
-	width: 25px;
-	height: 25px;
+	width: 40px;
+	height: 40px;
 	background: url("../imgs/menu-icon.png") no-repeat center;
 	background-size: contain;
 	margin-right: 10px;
+	margin-top: -5px;
 }
 
 nav{
@@ -84,7 +85,7 @@ nav li.current a{
 		position: absolute;
 		right: 0px;
 		top: 40px;
-		width: 3rem;
+		width: 60px;
 		background: rgba(0, 0, 0, 0.05);
 		text-align: center;
 	}
