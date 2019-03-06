@@ -915,8 +915,9 @@
 				}
 				break;
 		}
-		var promise = soundC.play();
-		if(promise !== undefined) {
+		soundC.play();
+		soundC.addEventListener('ended', () => soundE.play());
+		/*if(promise !== undefined) {
 			promise.catch(error => {
 				console.log('cerror:', error);
 				soundPlaying = false;
@@ -924,7 +925,7 @@
 				
 			});
 		}
-		soundC.addEventListener('ended', playE, false);
+		soundC.addEventListener('ended', playE, false);*/
 	}
 
 	var init = function() {
