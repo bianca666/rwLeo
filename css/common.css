@@ -36,10 +36,14 @@ header{
 #menu-icon{
 	display: none;
 	width: 40px;
-	height: 25px;
-	background: url("../imgs/menu-icon.png") no-repeat center;
-	background-size: contain;
+	height: 40px;
+	/* background: url("../imgs/menu-icon.png") no-repeat center;
+	background-size: contain; */
 	margin-right: 10px;
+	margin-top: -5px;
+	line-height: 40px;
+	text-align: center;
+	
 }
 
 nav{
@@ -74,9 +78,15 @@ nav li.current a{
 	color: #666;
 }
 
+#menu-icon img{
+	width: 80%;
+	height: 60%;
+	vertical-align: middle;
+}
+
 @media screen and (max-width: 576px){
 	#menu-icon{
-		display: inline-block;
+		display: block;
 	}
 
 	nav ul{
